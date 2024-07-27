@@ -365,13 +365,112 @@ if (age < 18) {
 console.log(`task 24: the age is ${age} and the isEmployed is ${isEmployed} so the person is ${person}`);
 
 //task 25
-// console.log(`task 25: the _ is ${} so the _ is ${}`);
+//to be honest i didn't understood what it meant by "where some months can belong to multiple seasons"
+season = ``;
+month = 7;
+switch (month) {
+    case 11: 
+    case 12:
+    case 1:
+    case 2:
+        season += `Winter`;
+        if ((month !== 11) && (month !== 2)) {
+            break;
+        } else {
+            season += ` & `;
+        }
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        season += `Spring`;
+        if (month !== 5) {
+            break;
+        } else {
+            season += ` & `;
+        }
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9: 
+        season += `Summer`;
+        if (month !== 9) {
+            break;
+        } else {
+            season += ` & `;
+        }
+    case 9:
+    case 10:
+    case 11:
+        season += `Fall`
+        break;
+    default: 
+        season = `invalid`;
+}
+console.log(`task 25: the month is ${month} so the season is ${season}`);
 
 //task 26
-// console.log(`task 26: the _ is ${} so the _ is ${}`);
+let x = -9;
+let y= 9;
+let quadrant;
+if ((x > 0) && ((y > 0))) {
+    quadrant = 1;
+} else if ((x < 0) && ((y > 0))) {
+    quadrant = 2;
+} else if ((x < 0) && ((y < 0))) {
+    quadrant = 3;
+} else {
+    quadrant = 4;
+}
+console.log(`task 26: the x is ${x} and the y is ${y} so the quadrant is ${quadrant}`);
 
 //task 27
-// console.log(`task 27: the _ is ${} so the _ is ${}`);
+console.log(`task 27: look i ain't no physician and i don't know about pressure and water so ill pass this task :)`);
 
 //task 28
-// console.log(`task 28: the _ is ${} so the _ is ${}`);
+month = 2;
+isLeapYear = false;
+if ((month === 1) || (month === 3) || (month === 5) || (month === 7) || (month === 8) || (month === 10) || (month === 12)) {
+    daysInMonth = 31;
+} else if ((month === 4) || (month === 6) || (month === 9) || (month === 11)) {
+    daysInMonth = 30;
+} else if (month === 2) {
+    if (isLeapYear) {
+        daysInMonth = 29;
+    } else {
+        daysInMonth = 28;
+    }
+} else {
+    daysInMonth = `invalid`
+}
+console.log(`task 28: the month is ${month} and the isLeapYear is ${isLeapYear} so the daysInMonth is ${daysInMonth}`);
+
+//task 29
+let a = 1;
+let b = 3;
+let c = 4;
+let canBeTriangle;
+if (((a + b) > c) && ((((a - b) > 0) && ((a - b) < c)) || (((b - a) > 0) && ((b - a) < c)))) {
+    canBeTriangle = true;
+} else if (((a + c) > b) && ((((a - c) > 0) && ((a - c) < b)) || (((c - a) > 0) && ((c - a) < b)))) {
+    canBeTriangle = true;
+} else if (((b + c) > a) && ((((b - c) > 0) && ((b - c) < a)) || (((c - b) > 0) && ((c - b) < a)))) {
+    canBeTriangle = true;    
+} else {
+    canBeTriangle = false;
+}
+console.log(`task 29: the a is ${a}, the b is ${b} and the c is ${c} so the canBeTriangle is ${canBeTriangle}`);
+
+//task 30
+console.log(`task 30: i'll be honest , i just don't know hoe to start and what to do and how the quadric equation can be solved with if-else and especially nested one`);
+
+//task 31
+number = 8;
+parity = ((number % 2) === 0) ? `Even` : `Odd`;
+console.log(`task 31: the number is ${number} so the parity is ${parity}`);
+
+//task 32
+age = 17;
+canVote = (age >= 18) ? true : false;
+console.log(`task 32: the age is ${age} so the canVote is ${canVote}`);
