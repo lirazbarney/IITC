@@ -11,10 +11,7 @@ foods[1] = `cow`;
 foods.push(`chicken`);
 
 //5. remove the first food from your array using shift
-console.log(foods[0]);
 let food = foods.pop();
-console.log(foods[0]);
-
 
 //6. create a loop that prints all the foods in your array
 for (let i = 0; i < foods.length; i++) {
