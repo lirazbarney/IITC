@@ -14,7 +14,7 @@ function getBMICategory(bmi) {
     }
 }
 
-let weight = parseFloat(prompt(`please enter your current weight in kg`, `00`));
+let weight = ``;
 while ((isNaN(weight)) || (weight <= 0)) {
     weight = parseFloat(prompt(`please enter your current weight in kg`, `00`));
 }
