@@ -325,7 +325,7 @@ console.log(`task 70: numbers is ${numbers.sort(threeReminderSorting)}`);
 
 //task 71
 colors.forEach(color => {
-    console.log(`task 81: ${color}`);
+    console.log(`task 71: ${color}`);
 });
 
 //task 72
@@ -334,135 +334,146 @@ numbers.forEach(num => {
     doubleNumbers.push(num * 2);
 });
 numbers = doubleNumbers;
-console.log(`task 82: numbers is ${numbers}`);
+console.log(`task 72: numbers is ${numbers}`);
 
 //task 73
-// console.log(`task 83: ${}`);
+console.log(`task 73: --------------------------------------------------------------------------------`);
 
 //task 74
-// console.log(`task 84: ${}`);
+let hasRed = false;
+colors.forEach(color => {
+    if (color === `RED`) {
+        hasRed = true;
+    }
+});
+console.log(`task 74: colors has red is ${hasRed}`);
 
 //task 75
-// console.log(`task 85: ${}`);
+let counter = 0;
+colors.forEach(color => {
+    if (color.length === 5) {
+        counter ++;
+    }
+});
+console.log(`task 75: in ${colors} there are ${counter} colors with 5 letters`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
 //task 76
-// console.log(`task 86: ${}`);
+function getWordLength(word) {
+    return word.length;
+}
+console.log(`task 76: the amount of letters in each color inisde ${colors} is ${colors.map(getWordLength)}`);
 
 //task 77
-// console.log(`task 87: ${}`);
+console.log(`task 77: sqrs numbers of ${numbers} are ${numbers.map(sqrNumbers)}`);
 
 //task 78
-// console.log(`task 88: ${}`);
+function isEven(num) {
+    return (num % 2) === 0
+}
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 10, 9];
+console.log(`task 78: the isEven for ${numbers} is ${numbers.map(isEven)}`);
 
 //task 79
-// console.log(`task 89: ${}`);
+function addGreeting(name) {
+    return `Hello ${name}`;
+}
+console.log(`task 79: added greeting is ${seasons.map(addGreeting)}`);
 
 //task 80
-// console.log(`task 80: ${}`);
+function convertingCtoF(temperature) {
+    return (temperature * 9 / 5) + 32;
+}
+function convertingArrOfTemps(arr) {
+    return arr.map(convertingCtoF);
+}
+console.log(`task 80: in C is [0, 20, 30, 100] in F is ${convertingArrOfTemps([0, 20, 30, 100])}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 81
+console.log(`task 81: the only evens numbers in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] are ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(isEven)}`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 82
+// console.log(`task 82: ${}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 83
+// console.log(`task 83: ${}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 84
+// console.log(`task 84: ${}`);
 
-//task 45
-// console.log(`task 45: ${}`);
-
-// -----------------------------------------------------------------------------------------------------------------------
-
-//task 46
-// console.log(`task 46: ${}`);
-
-//task 47
-// console.log(`task 47: ${}`);
-
-//task 48
-// console.log(`task 48: ${}`);
-
-//task 49
-// console.log(`task 49: ${}`);
-
-//task 50
-// console.log(`task 50: ${}`);
+//task 85
+// console.log(`task 85: ${}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 86
+// console.log(`task 86: ${}`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 87
+// console.log(`task 87: ${}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 88
+// console.log(`task 88: ${}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 89
+// console.log(`task 89: ${}`);
 
-//task 45
-// console.log(`task 45: ${}`);
-
-// -----------------------------------------------------------------------------------------------------------------------
-
-//task 46
-// console.log(`task 46: ${}`);
-
-//task 47
-// console.log(`task 47: ${}`);
-
-//task 48
-// console.log(`task 48: ${}`);
-
-//task 49
-// console.log(`task 49: ${}`);
-
-//task 50
-// console.log(`task 50: ${}`);
+//task 90
+// console.log(`task 90: ${}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 91
+// console.log(`task 91: ${}`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 92
+// console.log(`task 92: ${}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 93
+// console.log(`task 93: ${}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 94
+// console.log(`task 94: ${}`);
 
-//task 45
-// console.log(`task 45: ${}`);
+//task 95
+// console.log(`task 95: ${}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 46
-// console.log(`task 46: ${}`);
+//task 96
+// console.log(`task 96: ${}`);
 
-//task 47
-// console.log(`task 47: ${}`);
+//task 97
+// console.log(`task 97: ${}`);
 
-//task 48
-// console.log(`task 48: ${}`);
+//task 98
+// console.log(`task 98: ${}`);
 
-//task 49
-// console.log(`task 49: ${}`);
+//task 99
+// console.log(`task 99: ${}`);
 
-//task 50
-// console.log(`task 50: ${}`);
+//task 100
+// console.log(`task 100: ${}`);
+
+// -----------------------------------------------------------------------------------------------------------------------
+
+//task 101
+// console.log(`task 101: ${}`);
+
+//task 102
+// console.log(`task 102: ${}`);
+
+//task 103
+// console.log(`task 103: ${}`);
+
+//task 104
+// console.log(`task 104: ${}`);
+
+//task 105
+// console.log(`task 105: ${}`);
 
 
 
