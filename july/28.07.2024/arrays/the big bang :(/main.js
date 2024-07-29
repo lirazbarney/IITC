@@ -363,7 +363,7 @@ console.log(`task 75: in ${colors} there are ${counter} colors with 5 letters`);
 function getWordLength(word) {
     return word.length;
 }
-console.log(`task 76: the amount of letters in each color inisde ${colors} is ${colors.map(getWordLength)}`);
+console.log(`task 76: the amount of letters in each color inside ${colors} is ${colors.map(getWordLength)}`);
 
 //task 77
 console.log(`task 77: sqrs numbers of ${numbers} are ${numbers.map(sqrNumbers)}`);
@@ -396,61 +396,105 @@ console.log(`task 80: in C is [0, 20, 30, 100] in F is ${convertingArrOfTemps([0
 console.log(`task 81: the only evens numbers in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] are ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(isEven)}`);
 
 //task 82
-// console.log(`task 82: ${}`);
+function isLongWord(fruit) {
+    return fruit.length > 5;
+}
+console.log(`task 82: the long words fruits among ["pear", "apples", "bananas", "strawberry", "plum"] are ${([`pear`, `apples`, `bananas`, `strawberry`, `plum`]).filter(isLongWord)}`);
 
 //task 83
-// console.log(`task 83: ${}`);
+function isUnique(num, index, self) {
+    return self.indexOf(num) === index;
+}
+console.log(`task 83: [1, 2, 3, 4, 1, 3, 2, 1, 4, 5] without duplicates vals is ${[1, 2, 3, 4, 1, 3, 2, 1, 4, 5].filter(isUnique)}`);
 
 //task 84
-// console.log(`task 84: ${}`);
+function removeFalsy(val) {
+    return val;
+}
+console.log(`task 84: [true, false, 0, 1, undefined, null, NaN, "", "abc"] with only truthy vals is ${[true, false, 0, 1, undefined, null, NaN, ``, `abc`].filter(removeFalsy)}`);
 
 //task 85
-// console.log(`task 85: ${}`);
+function doesContain(str) {
+    return str.includes(`abc`);
+}
+console.log(`task 85: ["abc", "ABC", "Habcl", "all", "cba", "piggyabc"] with only abc is ${["abc", "ABC", "Habcl", "all", "cba", "piggyabc"].filter(doesContain)}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
 //task 86
-// console.log(`task 86: ${}`);
+function doesGreater3(num) {
+    return num > 3;
+}
+console.log(`task 86: the first number that greater than 3 in ${numbers} is ${numbers.find(doesGreater3)}`);
 
 //task 87
-// console.log(`task 87: ${}`);
+function doesStartB(color) {
+    return color.startsWith(`b`);
+}
+console.log(`task 87: the first color in ${colors} that starts with "b" is at index ${colors.findIndex(doesStartB)}`);
 
 //task 88
-// console.log(`task 88: ${}`);
+function isPrime(num) {
+    for (let i = 2; i < Math.sqrt(num); i++) {
+        if ((num % i) === 0) {
+            return false;
+        } 
+    }
+    return true;
+}
+console.log(`task 88: the first prime number in [15, 27, 31, 14, 17] is ${[15, 27, 31, 14, 17].find(isPrime)}`);
 
 //task 89
-// console.log(`task 89: ${}`);
+function isFall(season) {
+    return season === `Fall`;
+}
+console.log(`task 89: in${seasons}, fall is at index ${seasons.findIndex(isFall)}`);
 
 //task 90
-// console.log(`task 90: ${}`);
+console.log(`task 90: --------------------------------------------------------------------------------`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
 //task 91
-// console.log(`task 91: ${}`);
+console.log(`task 91: [1, 3, 56, 7] has even numbers is ${[1, 3, 56, 7].some(isEven)}`);
 
 //task 92
-// console.log(`task 92: ${}`);
+function longerThan3(fruit) {
+    return fruit.length > 3;
+}
+console.log(`task 92: fruits are ${fruits} and all longer than 3 letters is ${fruits.every(longerThan3)}`);
 
 //task 93
-// console.log(`task 93: ${}`);
+function isNegative(num) {
+    return num < 0;
+}
+console.log(`task 93: [-1, 0, 1] has negative numbers is ${[-1, 0, 1].some(isNegative)}`);
 
 //task 94
-// console.log(`task 94: ${}`);
+function isUnique2(val, index, self) {
+    return self.indexOf(val) === self.lastIndexOf();
+}
+console.log(`task 94: [-1, 0, 1, 0] is all unique is ${[-1, 0, 1, 0].every(isUnique2)}`);
 
 //task 95
-// console.log(`task 95: ${}`);
+console.log(`task 95: [-2, 0, 2, 4, 5] has negative numbers and all even is ${([-2, 0, 2, 4, 5].some(isNegative)) && ([-2, 0, 2, 4, 5].every(isEven))}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
 //task 96
-// console.log(`task 96: ${}`);
+function sumArr(accumulator, num) {
+    return accumulator + num;
+}
+console.log(`task 96: the sum of ${numbers} is ${numbers.reduce(sumArr, 0)}`);
 
 //task 97
-// console.log(`task 97: ${}`);
+function findLongest(longestFruit, currentFruit) {
+    return (longestFruit.length < currentFruit.length) ? currentFruit : longestFruit;
+}
+console.log(`task 97: the longest word among ${fruits} is ${fruits.reduce(findLongest, ``)}`);
 
 //task 98
-// console.log(`task 98: ${}`);
+console.log(`task 98: --------------------------------------------------------------------------------`);
 
 //task 99
 // console.log(`task 99: ${}`);
@@ -461,16 +505,30 @@ console.log(`task 81: the only evens numbers in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 // -----------------------------------------------------------------------------------------------------------------------
 
 //task 101
-// console.log(`task 101: ${}`);
+console.log(`task 101: [1, 2, 1, 3, 21, 1, 2, 3, 21, 46, 1, 90] without duplicates is ${[1, 2, 1, 3, 21, 1, 2, 3, 21, 46, 1, 90].filter(isUnique)}`);
 
 //task 102
-// console.log(`task 102: ${}`);
+function rotateArr(arr, times) {
+    for(let i = 0; i < times; i++) {
+        arr.push(arr.shift());
+    }
+    return arr;
+}
+console.log(`task 102: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] shifted 3 times is ${rotateArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)}`);
 
 //task 103
 // console.log(`task 103: ${}`);
 
 //task 104
-// console.log(`task 104: ${}`);
+let array2;
+function doesHave(num) {
+    return array2.includes(num);
+}
+function getIntersection(arr1, arr2) {
+    array2 = arr2;
+    return arr1.filter(doesHave)
+}
+console.log(`task 104: the intersection between [1, 2, 3, 4, 5] and [2, 5, 6, 7, 8] is ${getIntersection([1, 2, 3, 4, 5], [2, 5, 6, 7, 8])}`);
 
 //task 105
 // console.log(`task 105: ${}`);
