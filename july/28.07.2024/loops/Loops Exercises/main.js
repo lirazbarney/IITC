@@ -146,7 +146,14 @@ console.log(`task 19: `);
 console.log(`task 20: `);
 
 //task 21
-console.log(`task 21: `);
+number = 15;
+sum = 1;
+i = 1;
+while (sum < 15) {
+    i++;
+    sum += i;
+}
+console.log(`task 21: for number 15 the answer is ${i}`);
 
 //task 22
 console.log(`task 22: `);
