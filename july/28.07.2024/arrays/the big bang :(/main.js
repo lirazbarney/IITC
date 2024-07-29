@@ -214,105 +214,153 @@ console.log(`task 50: emptyCheck is ${emptyCheck}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 51
+emptyCheck = fruits.concat(colors);
+console.log(`task 51: emptyCheck is ${emptyCheck}`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 52
+emptyCheck = numbers.concat(fruits).concat(colors);
+console.log(`task 52: emptyCheck is ${emptyCheck}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 53
+emptyCheck = fruits.concat(`apple`);
+console.log(`task 53: emptyCheck is ${emptyCheck}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 54
+console.log(`task 54: emptyCheck is ${emptyCheck.concat(emptyCheck)}`);
 
-//task 45
-// console.log(`task 45: ${}`);
-
-// -----------------------------------------------------------------------------------------------------------------------
-
-//task 46
-// console.log(`task 46: ${}`);
-
-//task 47
-// console.log(`task 47: ${}`);
-
-//task 48
-// console.log(`task 48: ${}`);
-
-//task 49
-// console.log(`task 49: ${}`);
-
-//task 50
-// console.log(`task 50: ${}`);
+//task 55
+emptyCheck = fruits;
+emptyCheck = emptyCheck.concat(numbers);
+emptyCheck = emptyCheck.concat(seasons);
+console.log(`task 55: emptyCheck is ${emptyCheck}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 56
+fruits.push(`apple`, `banana`);
+fruits = fruits.join();
+console.log(`task 56: fruits is ${fruits}`);
+fruits = fruits.split(`,`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 57
+console.log(`task 57: number is ${numbers.join(`-`)}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 58
+function seperateJoin(arr, sep) {
+    return arr.join(sep);
+}
+console.log(`task 58: number is ${seperateJoin(numbers, `&`)}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 59
+console.log(`task 59: numbers is ${numbers.join(``)}`);
 
-//task 45
-// console.log(`task 45: ${}`);
-
-// -----------------------------------------------------------------------------------------------------------------------
-
-//task 46
-// console.log(`task 46: ${}`);
-
-//task 47
-// console.log(`task 47: ${}`);
-
-//task 48
-// console.log(`task 48: ${}`);
-
-//task 49
-// console.log(`task 49: ${}`);
-
-//task 50
-// console.log(`task 50: ${}`);
+//task 60
+let sentence = `hello world my name is liraz`
+console.log(`task 60: sentence is ${sentence.split(` `).reverse().join(` `)}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 41
-// console.log(`task 41: ${}`);
+//task 61
+seasons.reverse();
+console.log(`task 61: seasons is ${seasons}`);
 
-//task 42
-// console.log(`task 42: ${}`);
+//task 62
+console.log(`task 62: poop is palindrome is ${`poop`.split(``).reverse().join(``) === `poop`}`);
 
-//task 43
-// console.log(`task 43: ${}`);
+//task 63
+function sqrNumbers(num) {
+    return num * num;
+}
+numbers.reverse();
+numbers = numbers.map(sqrNumbers);
+console.log(`task 63: numbers is ${numbers}`);
 
-//task 44
-// console.log(`task 44: ${}`);
+//task 64
+console.log(`task 64: snake upside down is ${(`snake`.split(``).reverse().join(``))}`);
 
-//task 45
-// console.log(`task 45: ${}`);
+//task 65
+function reverseArr(arr) {
+    for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+        [arr[i], arr[arr.length - i - 1]] = [arr[arr.length - i - 1], arr[i]];
+    }
+    return arr;
+}
+console.log(`task 65: [1, 2, 3, 4, 5, 6, 7] reversed is ${reverseArr([1, 2, 3, 4, 5, 6, 7])}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
-//task 46
-// console.log(`task 46: ${}`);
+//task 66
+fruits.sort();
+console.log(`task 66: fruits is ${fruits}`);
 
-//task 47
-// console.log(`task 47: ${}`);
+//task 67
+function sortingNumbers(a, b) {
+    return (a > b);
+}
+for (let i = 0; i < 5; i++) {
+    numbers.push(Math.floor(Math.random() * 14)) - 5;
+}
+console.log(`task 67: numbers is ${numbers}. sorted numbers is ${numbers.sort(sortingNumbers)}`);
 
-//task 48
-// console.log(`task 48: ${}`);
+//task 68
+function anotherSortingNumber(a, b) {
+    return (a < b);
+}
+console.log(`task 68: numbers is ${numbers}. unsorted numbers is ${numbers.sort(anotherSortingNumber)}`);
 
-//task 49
-// console.log(`task 49: ${}`);
+//task 69
+function lengthSorting(w1, w2) {
+    return (w1.length > w2.length);
+}
+console.log(`task 69: ["hello", "world", "abc", "my", "name", "is", "abarabakadbra] sorted by length is ${["hello", "world", "abc", "my", "name", "is", "abarabakadbra"].sort(lengthSorting)}`);
 
-//task 50
-// console.log(`task 50: ${}`);
+//task 70
+function threeReminderSorting(a, b) {
+    return ((a % 3) > (b % 3));
+}
+console.log(`task 70: numbers is ${numbers.sort(threeReminderSorting)}`);
+
+// -----------------------------------------------------------------------------------------------------------------------
+
+//task 71
+colors.forEach(color => {
+    console.log(`task 81: ${color}`);
+});
+
+//task 72
+let doubleNumbers = [];
+numbers.forEach(num => {
+    doubleNumbers.push(num * 2);
+});
+numbers = doubleNumbers;
+console.log(`task 82: numbers is ${numbers}`);
+
+//task 73
+// console.log(`task 83: ${}`);
+
+//task 74
+// console.log(`task 84: ${}`);
+
+//task 75
+// console.log(`task 85: ${}`);
+
+// -----------------------------------------------------------------------------------------------------------------------
+
+//task 76
+// console.log(`task 86: ${}`);
+
+//task 77
+// console.log(`task 87: ${}`);
+
+//task 78
+// console.log(`task 88: ${}`);
+
+//task 79
+// console.log(`task 89: ${}`);
+
+//task 80
+// console.log(`task 80: ${}`);
 
 // -----------------------------------------------------------------------------------------------------------------------
 
