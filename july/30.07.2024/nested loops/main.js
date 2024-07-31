@@ -66,7 +66,6 @@ function countVowels(str) {
         } else {
             counter[1]++;
         }
-        console.log(counter);
     }
     return counter;
 }
@@ -77,7 +76,6 @@ console.log(``);
 //task 5
 function reverseStr(str) {
     let temp;
-    console.log(`str.length = ${str.length}, str.length / 2 = ${str.length / 2}`);
     for (let i = 0; i < str.length / 2; i++) {
         temp = str[i];
         str = changeStr(str, i, i + 1, str[str.length - i -1]);
@@ -185,7 +183,18 @@ function isPalindrome(str) {
     }
     return true;
 }
-console.log(`task 11: the string "radar" is palindrome is ${isPalindrome(`radar`)}`);
+function isPalindromeNested(str) {
+    for (let i = 0; i < str.length / 2; i++) {
+        for (let j = 0; j < 1; j++) {
+            if (str[i] !== str[str.length - i - 1]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+console.log(`task 11: the string "radar" is palindrome is ${isPalindrome(`raadar`)}`);
+console.log(`task 11: the string "radar" is palindrome is ${isPalindromeNested(`raadar`)}`);
 console.log(``);
 
 //task 12
@@ -233,8 +242,6 @@ for(let i = 0; i < array2D.length; i++) {
         arraySum[i] += array2D[i][j];
     }
 }
-console.log(array2D);
-console.log(arraySum);
 for (let i = 1; i < array2D.length; i++) {
     for (let j = 0; j < i; j++)  {
         if (arraySum[j] > arraySum[i]) {
@@ -243,5 +250,6 @@ for (let i = 1; i < array2D.length; i++) {
         }
     }
 }
-console.log(`task 14: array2D`);
+console.log(`task 14:`);
+console.log(array2D);
 
