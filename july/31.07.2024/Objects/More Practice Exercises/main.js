@@ -784,8 +784,75 @@ shoppingCart.toString();
 console.log(``);
 
 //task 29
-console.log(`task 29: `);
+let morseTranslator = {
+  alphabet: {
+    A: ".-",
+    B: "-...",
+    C: "-.-.",
+    D: "-..",
+    E: ".",
+    F: "..-.",
+    G: "--.",
+    H: "....",
+    I: "..",
+    J: ".---",
+    K: "-.-",
+    L: ".-..",
+    M: "--",
+    N: "-.",
+    O: "---",
+    P: ".--.",
+    Q: "--.-",
+    R: ".-.",
+    S: "...",
+    T: "-",
+    U: "..-",
+    V: "...-",
+    W: ".--",
+    X: "-..-",
+    Y: "-.--",
+    Z: "--..",
+    1: ".----",
+    2: "..---",
+    3: "...--",
+    4: "....-",
+    5: ".....",
+    6: "-....",
+    7: "--...",
+    8: "---..",
+    9: "----.",
+    0: "-----",
+    " ": " ", // Space character maps to space in morse code
+  },
+  textToMorse: function (txt) {
+    let textArr = txt.split("");
+    let morseTxt = ``;
+    textArr.forEach((letter) => {
+      morseTxt += `${this.alphabet[letter.toUpperCase()]} `;
+    });
+    console.log(`task 29: ${txt} in morse is ${morseTxt}`);
+  },
+  morseToText: function (morse) {
+    let keysArr = Object.keys(this.alphabet);
+    let morseArr = morse.split(` `);
+    let finatlTxt = ``;
+    morseArr.forEach((morseLetter) => {
+      for (let i = 0; i < keysArr.length; i++) {
+        if (morseLetter === this.alphabet[keysArr[i]]) {
+          finatlTxt += keysArr[i];
+        }
+      }
+    });
+    console.log(`task 29: ${morse} in text is ${finatlTxt}`);
+  },
+};
+morseTranslator.textToMorse(`hello`);
+morseTranslator.morseToText(`.... . .-.. .-.. --- `);
 console.log(``);
 
 //task 30
-console.log(`task 30: `);
+let stopwatch = {
+  startTime: 0,
+  isRunning: false,
+  elapsedTime: 0,
+};
