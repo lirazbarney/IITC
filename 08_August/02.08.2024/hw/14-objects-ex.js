@@ -44,7 +44,6 @@ console.log("Student Names:", names);
 function getStudentById(students, id) {
   let resultStudent = null;
   students.forEach((student) => {
-    // console.log(`student.id = ${student.id}; id = ${id}; student.id === id = ${student.id === id}`);
     if (student.id === id) {
       resultStudent = student;
       return;
@@ -262,3 +261,8 @@ console.log("Product Counts:", productCounts);
     Monitor: 1
   }
   */
+
+let newArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+let removed = newArr.slice();
+console.log(newArr);
+console.log(removed);
