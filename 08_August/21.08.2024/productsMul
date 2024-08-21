@@ -19,8 +19,8 @@ function getProductById(id) {
     if (products[i].id === id) {
       product = products[i];
     }
-    return product;
   }
+  return product;
 }
 
 module.exports = {
