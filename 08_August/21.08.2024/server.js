@@ -23,7 +23,7 @@ app.get("/api/products", (req, res) => {
 
 app.get("/api/products/:id", (req, res) => {
   const { id } = req.params;
-  //   res.json(getProductById(id));
+  res.json(getProductById(id));
 });
 
 app.get("*", (req, res) => {
