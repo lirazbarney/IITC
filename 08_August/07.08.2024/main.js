@@ -67,9 +67,7 @@ let palindromes = [];
 for (let i = 0; i < arr.length; i++) {
   let str = arr[i];
   let isPalindrome = true;
-  console.log(str);
   for (let j = 0; j < str.length / 2; j++) {
-    console.log(`${str[j]}, ${str[str.length - 1 - j]}`);
 
     if (str[j] !== str[str.length - 1 - j]) {
       isPalindrome = false;

@@ -254,64 +254,65 @@ create table Profiles (
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- --q1
--- declare @RequiredItemCode int = null
--- SELECT code as "קוד", [Description] as "תיאור", Available as "במלאי", 
---         [Waiting] as "בהמתנה", [Saved] as "שמורה", SubScript as "קבועות",  
---         UnitPrice as "מחיר", Freq as "תדירות", SuppDate as "ת. אספקה", OrderPercnt as "%"
--- from items
--- where @RequiredItemCode is null or code = @RequiredItemCode
+--q1
+declare @RequiredItemCode int = null
+SELECT code as "קוד", [Description] as "תיאור", Available as "במלאי", 
+        [Waiting] as "בהמתנה", [Saved] as "שמורה", SubScript as "קבועות",  
+        UnitPrice as "מחיר", Freq as "תדירות", SuppDate as "ת. אספקה", OrderPercnt as "%"
+from items
+where @RequiredItemCode is null or code = @RequiredItemCode
 
--- --q2
--- declare @OrderStatus VARCHAR(20) = 'Processing'
--- declare @StartingDate Date = '2024-08-01'
--- declare @EndingDate Date = '2024-08-14'
--- declare @OrderNumber int = null
--- select distinct i.OrderDate, i.totamount, eo.itemsInTheOrder, eo.[Status]
--- from Invoices i  
--- join Orderswithitems oi on oi.OrderNo = i.OrderNo
--- join ExOrders eo on eo.OrderNo = oi.OrderNo
--- where (@OrderStatus is null or eo.[Status] = @OrderStatus) 
--- and ((@StartingDate is null and @EndingDate is null) or i.OrderDate between @StartingDate and @EndingDate)
--- and (@OrderNumber is null or i.OrderNo = @OrderNumber)
--- order by i.OrderDate
 
--- --q3
--- DECLARE @customerID int = 987654321
--- SELECT distinct c.CustID, c.CustName, c.CustStatus, s.OrderNo, s.[Status], eo.itemsInTheOrder, s.Freq
--- from Customers c join Subscription s
--- on c.CustID = s.CustID
--- join OrdersWithItems oi on s.OrderNo = oi.OrderNo
--- join ExOrders eo on s.OrderNo = eo.OrderNo
--- where @customerID is null or c.CustID = @customerID
+--q2
+declare @OrderStatus VARCHAR(20) = 'Canceled'
+declare @StartingDate Date = null
+declare @EndingDate Date = null
+declare @OrderNumber int = null
+select distinct i.OrderDate, i.totamount, eo.itemsInTheOrder, eo.[Status]
+from Invoices i  
+join Orderswithitems oi on oi.OrderNo = i.OrderNo
+join ExOrders eo on eo.OrderNo = oi.OrderNo
+where (@OrderStatus is null or eo.[Status] = @OrderStatus) 
+and ((@StartingDate is null and @EndingDate is null) or i.OrderDate between @StartingDate and @EndingDate)
+and (@OrderNumber is null or i.OrderNo = @OrderNumber)
+order by i.OrderDate
 
--- --q4
--- declare @FromDate Date = null
--- SELECT OrderNo, invNo, [Date], Amount * CrdtDebt as cost
--- from Accounting
--- where @FromDate is null or [Date] > @FromDate
+--q3
+DECLARE @customerID int = 987654321
+SELECT distinct c.CustID, c.CustName, c.CustStatus, s.OrderNo, s.[Status], eo.itemsInTheOrder, s.Freq
+from Customers c join Subscription s
+on c.CustID = s.CustID
+join OrdersWithItems oi on s.OrderNo = oi.OrderNo
+join ExOrders eo on s.OrderNo = eo.OrderNo
+where @customerID is null or c.CustID = @customerID
 
--- UNION ALL
+--q4
+declare @FromDate Date = null
+SELECT OrderNo, invNo, [Date], Amount * CrdtDebt as cost
+from Accounting
+where @FromDate is null or [Date] > @FromDate
 
--- select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
--- from Accounting
--- where (@FromDate is null or [Date] > @FromDate) and Amount * CrdtDebt > 0
+UNION ALL
 
--- union ALL
+select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
+from Accounting
+where (@FromDate is null or [Date] > @FromDate) and Amount * CrdtDebt > 0
 
--- select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
--- from Accounting
--- where (@FromDate is null or [Date] > @FromDate) and Amount * CrdtDebt < 0
+union ALL
 
--- union ALL
+select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
+from Accounting
+where (@FromDate is null or [Date] > @FromDate) and Amount * CrdtDebt < 0
 
--- select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
--- from Accounting
--- where (@FromDate is null or [Date] > @FromDate)
+union ALL
 
--- --q5
--- select eo.OrderDate, eo.SuppDate, i.TotAmount, eo.[Status]
--- from ExOrders eo join Invoices i
--- on eo.OrderNo = i.OrderNo
--- where eo.[Status] in ('Not Fullfilled', 'Not Shipped')
--- order BY eo.SuppDate
+select null as OrderNo, null as invNo, null as [Date], sum(Amount * CrdtDebt)
+from Accounting
+where (@FromDate is null or [Date] > @FromDate)
+
+--q5
+select eo.OrderDate, eo.SuppDate, i.TotAmount, eo.[Status]
+from ExOrders eo join Invoices i
+on eo.OrderNo = i.OrderNo
+where eo.[Status] in ('Not Fullfilled', 'Not Shipped')
+order BY eo.SuppDate
