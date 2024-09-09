@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 500px;
+      }
+      div {
+        background-color: yellow;
+        padding: 10px;
+        border: blue solid;
+        margin: 10px;
+      }
+      p {
+        color: red;
+      }
+      .bolded {
+        color: white;
+        background-color: gray;
+        border-radius: 8px;
+      }
+      span {
+        color: black;
+      }
+      .rounded {
+        border-radius: 10px;
+      }
+      .red {
+        background-color: red;
+        border: none;
+        padding: 0px;
+        height: 250px;
+      }
+      .small {
+        height: 25px;
+        width: 25px;
+        background-color: black;
+        color: white;
+        margin-left: 0;
+        border: none;
+      }
+      .left {
+        margin-left: 0;
+      }
+      .right {
+        margin-right: 0;
+        margin-left: auto;
+      }
+      .second {
+        display: inline-flex;
+      }
+      .round {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        padding: 0;
+        margin: 0;
+      }
+      .one {
+        background-color: red;
+      }
+      .two {
+        background-color: blue;
+      }
+      .three {
+        background-color: green;
+      }
+      .empty {
+        border: none;
+        width: 250px;
+      }
+      .third {
+        padding-left: 80px;
+        padding-right: 80px;
+      }
+      .middle {
+        height: 25px;
+        width: 50px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        margin-inline: auto;
+        box-shadow: 10px 5px 5px white;
+      }
+      button {
+        background-color: rgb(169, 98, 234);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>1st Lorem ipsum dolor sit amet consectetur</p>
+      <p>2nd Lorem ipsum dolor <span>BLACK</span> amet consectetur.</p>
+
+      <p class="bolded">3rd Lorem ipsum dolor sit amet consectetur.</p>
+    </div>
+    <div class="second">
+      <div class="round one"></div>
+      <div class="round two"></div>
+      <div class="round three"></div>
+      <div class="empty"></div>
+    </div>
+    <div class="third">
+      <div class="red">
+        <div class="left small">left</div>
+        <div class="right small">right</div>
+        <div class="middle">middle</div>
+      </div>
+    </div>
+    <button>explore</button>
+    <button class="rounded">join</button>
+  </body>
+</html>
