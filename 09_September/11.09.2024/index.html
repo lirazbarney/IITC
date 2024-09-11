@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      header {
+        position: sticky;
+        top: 0;
+      }
+      .top {
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        background-color: blueviolet;
+      }
+
+      main {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-around;
+        /* justify-content: stretch; */
+        background-color: gray;
+        align-items: stretch;
+      }
+      .column {
+        margin: 1rem;
+        flex-wrap: wrap;
+        background-color: blueviolet;
+        flex-shrink: 1;
+        flex-basis: 100rem;
+        /* display: block; */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top">
+        <span class="logo">logo </span>
+        <div class="side-bar">
+          <button class="home">home</button>
+          <button class="about">about</button>
+          <button class="contact">contact</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="column first">
+        <h2>heading</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi labore
+          minima harum ratione consectetur, exercitationem eligendi libero
+          officia asperiores quam! Numquam aliquam nisi doloremque tempore
+          sapiente adipisci recusandae excepturi molestiae?
+        </p>
+      </div>
+      <div class="column second">
+        <h2>heading</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum
+          exercitationem fugit, perspiciatis nisi vel, ullam labore, cupiditate
+          sequi pariatur reiciendis reprehenderit provident praesentium
+          laboriosam unde placeat illum odio doloremque libero ipsum aliquid?
+          Dolorum aut dicta eveniet doloremque distinctio ut, repellat nisi
+          similique ea obcaecati aspernatur amet dolores fugit ducimus provident
+          explicabo quaerat, eaque deleniti aliquam molestiae ullam quidem
+          illum? Modi aliquam assumenda consectetur odit, quos quo eveniet, esse
+          officiis enim accusantium, tempore nulla fugit maiores ullam laborum
+          quae. Alias et ullam itaque minus quam, iure deserunt quia quod
+          suscipit aliquam libero esse natus nesciunt voluptatibus rerum,
+          placeat aspernatur delectus. Accusantium!
+        </p>
+      </div>
+      <div class="column third">
+        <h2>heading</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi,
+          numquam. Tenetur ea alias vel suscipit reiciendis nesciunt, iste nihil
+          et!
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
