@@ -1,0 +1,130 @@
+
+@font-face {
+    font-family: outfit;
+    src: url('./assets/fonts/outfit/Outfit-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: young-serif;
+    src: url('./assets/fonts/young-serif/YoungSerif-Regular.ttf');
+}
+:root {
+    --main-bgc: hsl(0, 0%, 100%);
+    --stone-100: hsl(30, 54%, 90%);
+    --stone-150: hsl(30, 18%, 87%);
+    --stone-600: hsl(30, 10%, 34%);
+    --stone-900: hsl(24, 5%, 18%);
+
+    --brown-800: hsla(14, 45%, 36%);
+
+    --rose-800: hsl(332, 51%, 32%);
+    --rose-50: hsl(330, 100%, 98%);
+
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.bold {
+    font-weight: bold;
+}
+body, html {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+body {
+    font-size: 16px;
+    background-color: var(--stone-150);
+    color: var(--stone-900)
+}
+
+main {
+    height: 100%;
+    background-color: var(--main-bgc);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+.img-wrapper {
+    max-width: 100%;
+}
+img {
+    max-width: 100%;
+}
+article {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 3rem;
+    max-width: 100%;
+    gap: 2rem;
+}
+h1 {
+    font-family: young-serif;
+    font-weight: 400;
+    margin-top: 1rem;
+} 
+.first-paragraph {
+    font-family: outfit;
+    font-weight: 400;
+}
+.preparation-time {
+    background-color: var(--rose-50);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    /* gap: 1rem */
+}
+.preparation-title {
+    color: var(--rose-800);
+    margin-bottom: 1rem;
+}
+/* .preparation-list { */
+ul, ol {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    justify-content: space-between;
+    font-family: outfit;
+    list-style:inside;
+    /* text-align: left; */
+}
+li::marker {
+    color: var(--brown-800);
+}
+
+h2 {
+    color:var(--brown-800);
+    margin-bottom: 1rem;
+}
+
+.nutrition-table {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+}
+.nutrition-stat {
+    display: flex;
+    /* justify-content: space-evenly; */
+    padding-inline: 2rem;
+}
+.stats {
+    align-self: flex-end;
+}
+.nutrition-name, .nutrition-value {
+    display: flex;
+    flex: 1;
+}
+.nutrition-value {
+    color: var(--rose-800);
+}
+/* @media (min-width: 1024px) {
+    main {
+        margin: 2rem;
+        background-color: red;
+    }
+} */

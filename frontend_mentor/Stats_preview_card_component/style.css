@@ -13,6 +13,9 @@
     margin: 0;
 }
 
+html, body {
+    height: 100%;
+}
 body {
     background-color: var(--main-bgc);
     flex-grow: 1;
