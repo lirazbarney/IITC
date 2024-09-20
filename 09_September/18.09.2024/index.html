@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 onclick="easterEgg()">my to-do list</h1>
+    <form>
+      <label for="todoInput">insert a mission:</label>
+      <input id="todoInput" type="text" placeholder="my new mission is" />
+      <button>submit</button>
+    </form>
+    <label id="newMissionsLabel" for="hideNewMissions"
+      >hide missions need to be done</label
+    >
+    <input id="hideNewMissions" type="checkbox" onchange="hidingHandler(1)" />
+    <!-- onchange="hidingNewMissions()" -->
+    <label id="oldMissionsLabel" for="hideOldMissions"
+      >hide completed missions</label
+    >
+    <input id="hideOldMissions" type="checkbox" onchange="hidingHandler(2)" />
+    <!-- onchange="hidingOldMissions()" -->
+    <label id="hideAllLabel" for="hideAll">hide all</label>
+    <input id="hideAll" type="checkbox" onchange="hidingHandler(3)" />
+    <button onclick="unDeletingMissions()">return deleted mission</button>
+    <button onclick="allCompleted()">mark all as completed</button>
+    <button onclick="allNew()">mark all as un-completed</button>
+    <div class="todo-missions">
+      <h3>my missions:</h3>
+      <ul class="new-missions"></ul>
+    </div>
+    <div class="completed-missions">
+      <h3>my completed missions:</h3>
+      <ul class="old-missions"></ul>
+    </div>
+    <!-- <input
+      id="checkBox"
+      type="checkbox"
+      onchange="logging('hello')"
+      checked=""
+    /> -->
+    <script src="main.js"></script>
+  </body>
+</html>

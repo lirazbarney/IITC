@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-weight: normal;
+      }
+      .selected {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="text">hello</p>
+      <p class="text">world</p>
+      <p class="text">baba</p>
+    </div>
+    <ul id="list">
+      <li>baba</li>
+      <li>daab</li>
+      <li>baab</li>
+      <li>abad</li>
+      <li>adab</li>
+      <li>adad</li>
+      <li>abab</li>
+      <li>dada</li>
+      <li>daba</li>
+      <li>bada</li>
+    </ul>
+    <button id="btn">highlight list items</button>
+
+    <button class="add-item">add item</button>
+    <button id="remove-first">remove first</button>
+    <button id="remove-last">remove last</button>
+    <button id="remove-selected">remove selected</button>
+    <ul class="second-task"></ul>
+
+    <div id="greeting">
+      <input type="text" id="name-input" />
+    </div>
+    <script>
+      let counter = 0;
+      function boldListItmes() {
+        // const list = document.querySelectorAll("#list");
+        for (let i = 0; i < list.length; i++) {
+          list[i].style.backgroundColor = "Yellow";
+        }
+      }
+
+      function addNewItem() {
+        const newItem = document.createElement("li");
+        newItem.textContent = `new item number ${counter++}`;
+        const myList = document.querySelector(".second-task");
+        myList.appendChild(newItem);
+        newItem.addEventListener("click", function () {
+          const allItems = myList.querySelectorAll("li");
+          allItems.forEach((currentItem) => {
+            console.log(!(currentItem === newItem));
+            if (!(currentItem === newItem)) {
+              // console.log(currentItem.getAttribute);
+              currentItem.classList.remove("selected");
+            }
+          });
+          newItem.classList.toggle("selected");
+        });
+      }
+
+      const divContent = document.getElementById("content");
+      divContent.style.backgroundColor = "LightBlue";
+      const texts = divContent.querySelectorAll(".text");
+      for (let i = 0; i < texts.length; i++) {
+        texts[i].style.color = "Red";
+      }
+      const list = document.querySelectorAll("#list");
+      for (let i = 0; i < list.length; i++) {
+        console.log(list[i].textContent);
+      }
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", boldListItmes);
+
+      const addbtn = document.querySelector(".add-item");
+      addbtn.addEventListener("click", addNewItem);
+
+      const myList = document.querySelector(".second-task");
+
+      const removeFirstBtn = document.querySelector("#remove-first");
+      removeFirstBtn.addEventListener("click", function () {
+        const firstItem = myList.querySelector("li");
+        myList.removeChild(firstItem);
+      });
+
+      const removeLastBtn = document.querySelector("#remove-last");
+      removeLastBtn.addEventListener("click", function () {
+        const allItems = myList.querySelectorAll("li");
+        console.log(allItems);
+        console.log(allItems.length);
+        myList.removeChild(allItems[allItems.length - 1]);
+      });
+
+      const removeSelectedBtn = document.querySelector("#remove-selected");
+      removeSelectedBtn.addEventListener("click", function () {
+        const allItems = myList.querySelectorAll("li");
+        allItems.forEach((currentItem) => {
+          if (currentItem.classList.contains("selected")) {
+            myList.removeChild(currentItem);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
