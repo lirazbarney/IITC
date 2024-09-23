@@ -69,25 +69,13 @@ function renderMissions() {
       hasTODO = true;
     }
   }
-  //   if (!hasTODO) {
-  //     //     document.querySelector(`.todo-missions`).style.display = "none";
-  //     //   } else {
-  //     //     document.querySelector(`.todo-missions`).style.display = "block";
-  //     //   }
-  //     isHidingNew = true;
-  //     document.querySelector(`#hideNewMissions`).checked = true;
-  //     hidingNewMissions();
-  //   } else {
-  //     isHidingNew = false;
-  //     document.querySelector(`#hideNewMissions`).checked = true;
-  //     hidingNewMissions();
-  //   }
   isHidingNew = !hasTODO;
   document.querySelector(`#hideNewMissions`).checked = !hasTODO;
   hidingNewMissions();
   isHidingOld = !hasCompleted;
   document.querySelector(`#hideOldMissions`).checked = !hasCompleted;
   hidingOldMissions();
+  hidingThemAll(isHidingNew & isHidingOld);
 }
 
 function toggleMission(receivedID) {
@@ -160,8 +148,6 @@ function updateMission(receivedID) {
   inputCheckbox.classList.toggle("updating");
 }
 
-function addMission() {}
-
 function createMission(name) {
   gMissions.push({
     missionID: makeID(),
@@ -179,8 +165,11 @@ function makeID() {
   }
   return id;
 }
+
 console.log(gMissions);
 renderMissions();
+
+function addMission(ev) {}
 
 const elForm = document.querySelector("form");
 console.log(elForm);

@@ -1,0 +1,19 @@
+table, th, td {
+    border: 1px , solid
+}
+
+.products-wrapper {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+}
+
+.single-product {
+    border: 1px, solid;
+    margin-top: rem;
+    padding: 8px;
+}
+
+h5 {
+    margin-block: 0;
+}

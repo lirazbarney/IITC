@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <table class="my-products">
+      <thead>
+        <tr>
+          <th>product name</th>
+          <th>product price (one unit)</th>
+          <th>amount</th>
+          <th>total price</th>
+          <th>remove</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <!-- <tr>
+        <td>milk</td>
+        <td>5</td>
+        <td>2</td>
+        <td>10</td>
+        <td><button>remove</button></td>
+      </tr> -->
+    </table>
+    <div class="total">total price:</div>
+    <div class="products-wrapper">
+      <!-- <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+            <button class="add-product">add product</button>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+        </div>
+        <div class="single-product">
+            <h5 class="product-name">milk</h5>
+            <span class="product-price">2</span>
+        </div> -->
+    </div>
+    <form class="making-new-product">
+      <input
+        class="new-product-name"
+        type="text"
+        placeholder="new product name"
+      />
+      <input
+        class="new-product-price"
+        type="number"
+        min="0"
+        placeholder="new product price"
+      />
+      <button class="add-new-product-btn" onsubmit="addNewProduct()">
+        add new product
+      </button>
+    </form>
+    <script src="main.js"></script>
+  </body>
+</html>
