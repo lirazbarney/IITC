@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="add-employee">
+      <input
+        type="text"
+        id="newEmpFirstName"
+        placeholder="Employee's first name"
+      />
+      <input
+        type="text"
+        id="newEmpLastName"
+        placeholder="Employee's last name"
+      />
+      <input
+        id="newEmpAge"
+        type="number"
+        min="18"
+        placeholder="Employee's age"
+      />
+      <input type="date" id="newEmpStartDate" />
+      <input id="newEmpDep" type="text" placeholder="Employee's department" />
+      <input
+        id="newEmpSalary"
+        type="number"
+        min="5250"
+        step="50"
+        placeholder="Employee's salary"
+      />
+      <button type="submit" class="submit-btn">add new Employee</button>
+      <button type="button" class="reset-form" onclick="resetForm()">
+        reset
+      </button>
+    </form>
+    <div class="filter-buttons">
+      <button class="display-all" onclick="displayAll()">Display all</button>
+      <div class="filtering-div">
+        <button class="filter-btn" onclick="filterTheEmployee()">
+          Display some
+        </button>
+      </div>
+    </div>
+    <div class="employees-list"></div>
+    <script src="controller.js"></script>
+  </body>
+</html>
