@@ -7,12 +7,53 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form class="pin-code">
-      <label for="PINcode">Please enter PIN code</label>
+    <div class="welcome">
+      <h1>Please insert New Credit Card!</h1>
+      <div class="credit-card-container">
+        <label for="creditCardInp"
+          >please enter your credit card. Make sure it has 16 digits:</label
+        >
+        <input
+          placeholder="XXXX-XXXX-XXXX-XXXX"
+          name="creditCardInp"
+          id="creditCardInp"
+        />
+      </div>
+      <div class="pin-continer">
+        <label for="PINcodeInp"
+          >please choose 4 digits PIN code. Don't forget it!</label
+        >
+        <input placeholder="XXXX" name="PINcodeInp" id="PINcodeInp" />
+      </div>
+      <button id="welcomingBtn">finish</button>
+    </div>
+    <div class="choosing-credit-card hidden">
+      <h1>please choose which credit card you want to do actions on</h1>
+      <ul></ul>
+      <button class="add-new-card" onclick="renderAddingNewCard()">
+        add new card
+      </button>
+    </div>
+    <form class="pin-code hidden">
+      <label for="PINcode">Please enter PIN code for <span></span> :</label>
       <input type="text" name="PINcode" id="PINcode" />
-      <button>enter</button>
+      <button type="submit">enter</button>
+      <button
+        class="add-new-card"
+        onclick="renderAddingNewCard()"
+        type="button"
+      >
+        add new card
+      </button>
+      <button
+        class="chose-another-card"
+        onclick="renderAllCards()"
+        type="button"
+      >
+        add new card
+      </button>
     </form>
-    <nav>
+    <nav class="hidden">
       <button>show available balance</button>
       <button>withdraw money</button>
       <button>deposit money</button>
