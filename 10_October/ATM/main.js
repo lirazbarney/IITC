@@ -11,6 +11,8 @@ let lastPINcodeInpValue = "XXXX";
 let pinCodeDigitsCounter = 0;
 
 const enteringNewCreditCard = document.querySelector(".welcome");
+const creditCardInp = enteringNewCreditCard.querySelector("#creditCardInp");
+const pinCodeInp = enteringNewCreditCard.querySelector("#PINcodeInp");
 const finishBtn = enteringNewCreditCard.querySelector("#welcomingBtn");
 const choosingCreditCard = document.querySelector(".choosing-credit-card");
 const elFormPIN = document.querySelector(".pin-code");
@@ -68,48 +70,46 @@ function checkIfDone() {
   }
 }
 
-//handling the finish button
-function finishBtnHandler(ev) {
-  if (ev.target.classList.contains("done")) {
-    localStorage.setItem(lastCreditCardInpValue, lastPINcodeInpValue);
-    enteringNewCreditCard.classList.add("hidden");
-    elFormPIN.classList.remove("hidden");
-  } else {
-    alert(
-      "please fill all 16 digits of the credit card and all 4 digits of the PIN code before continuing. if there is any problem (and i promise you that there are not any problems!), please call imminently the programmer, Liraz Bar-Nir, he will 100% ignore this."
-    );
-  }
-}
-
-function renderAllCards() {
+function getAllCards() {
   const allCards = [];
-  //uploading all cards with their PIN codes
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const val = localStorage.getItem(key);
     allCards.push({ cardNumber: key, pinCode: val });
   }
-  const cardList = choosingCreditCard.querySelector("ul");
+  return allCards;
+}
+
+//search if a cardNumber is already inside the list
+//true if already exists
+//false if doesn't exist
+function hasAlreadyCard(cardNumber) {
+  const allCards = getAllCards();
   for (let i = 0; i < allCards.length; i++) {
-    //create new card element
-    const fullNewCard = document.createElement("li");
-    const newCard = document.createElement("p");
-    newCard.textContent = allCards[i].cardNumber;
-    const newPIN = document.createElement("span");
-    newPIN.textContent = allCards[i].pinCode;
-    newPIN.classList.add("hidden");
-    //append the new card
-    fullNewCard.appendChild(newCard);
-    fullNewCard.appendChild(newPIN);
-    cardList.appendChild(fullNewCard);
-    fullNewCard.addEventListener("click", function (ev) {
-      chosenCreditCard(ev);
-    });
+    if (allCards[i].cardNumber === cardNumber) {
+      return true;
+    }
   }
-  //make the cards list visible, the rest hidden
-  elFormPIN.classList.add("hidden");
-  choosingCreditCard.classList.remove("hidden");
-  enteringNewCreditCard.classList.add("hidden");
+  return false;
+}
+
+//handling the finish button
+function finishBtnHandler(ev) {
+  if (ev.target.classList.contains("done")) {
+    if (!hasAlreadyCard(lastCreditCardInpValue)) {
+      localStorage.setItem(lastCreditCardInpValue, lastPINcodeInpValue);
+      myCreditCard = lastCreditCardInpValue;
+      myPINcode = lastPINcodeInpValue;
+      renderForm();
+    } else {
+      alert("credit card already exist, please enter different card");
+      renderAddingNewCard();
+    }
+  } else {
+    alert(
+      "please fill all 16 digits of the credit card and all 4 digits of the PIN code before continuing. if there is any problem (and i promise you that there are not any problems!), please call imminently the programmer, Liraz Bar-Nir, he will 100% ignore this."
+    );
+  }
 }
 
 function chosenCreditCard(ev) {
@@ -121,19 +121,85 @@ function chosenCreditCard(ev) {
 }
 
 function renderForm() {
+  counter = 0;
   console.log(`the desired PIN code is ${myPINcode}`);
   elFormPIN.querySelector("span").textContent = myCreditCard;
   //make the form visible, the rest hidden
+  makeAllHidden();
   elFormPIN.classList.remove("hidden");
-  choosingCreditCard.classList.add("hidden");
-  enteringNewCreditCard.classList.add("hidden");
+}
+
+function renderAllCards() {
+  //uploading all cards with their PIN codes
+  const allCards = getAllCards();
+  if (allCards.length === 0) {
+    alert("You have no cards. You are transferred to the adding new card page");
+    renderAddingNewCard();
+  } else if (allCards.length === 1) {
+    myCreditCard = allCards[0].cardNumber;
+    myPINcode = allCards[0].pinCode;
+    renderForm();
+  } else {
+    const cardList = choosingCreditCard.querySelector("ul");
+    cardList.innerHTML = "";
+    for (let i = 0; i < allCards.length; i++) {
+      //create new card element
+      const fullNewCard = document.createElement("li");
+      const newCard = document.createElement("p");
+      newCard.textContent = allCards[i].cardNumber;
+      const newPIN = document.createElement("span");
+      newPIN.textContent = allCards[i].pinCode;
+      newPIN.classList.add("hidden");
+      //append the new card
+      fullNewCard.appendChild(newCard);
+      fullNewCard.appendChild(newPIN);
+      cardList.appendChild(fullNewCard);
+      fullNewCard.addEventListener("click", function (ev) {
+        chosenCreditCard(ev);
+      });
+    }
+    //make the cards list visible, the rest hidden
+    makeAllHidden();
+    choosingCreditCard.classList.remove("hidden");
+  }
 }
 
 function renderAddingNewCard() {
-  //make the form visible, the rest hidden
-  elFormPIN.classList.add("hidden");
-  choosingCreditCard.classList.add("hidden");
+  //resetting the page
+  creditCardInp.value = "";
+  pinCodeInp.value = "";
+  lastCreditCardInpValue = "XXXX-XXXX-XXXX-XXXX";
+  creditCardDigitsCounter = 0;
+  lastPINcodeInpValue = "XXXX";
+  pinCodeDigitsCounter = 0;
+  finishBtn.classList.remove("done");
+  //make the adding new card page visible, the rest hidden
+  makeAllHidden();
   enteringNewCreditCard.classList.remove("hidden");
+}
+
+//make all the first-generation children of the body to be hidden
+function makeAllHidden() {
+  Array.from(document.body.children).forEach(function (el) {
+    el.classList.add("hidden");
+  });
+}
+
+function enteringMyPINcode() {
+  if (myPINcode === enteringPINcodeInp.value) {
+    console.log("correct PIN code");
+  } else {
+    counter++;
+    enteringPINcodeInp.value = "";
+    if (counter >= 3) {
+      alert("invalid PIN codes, please connect the bank");
+      renderAllCards();
+    } else {
+      alert(
+        `wrong PIN code! please try again , you have left ${3 - counter} tries`
+      );
+    }
+  }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -158,18 +224,16 @@ if (localStorage.length > 0) {
 }
 
 //handling the credit card input
-enteringNewCreditCard
-  .querySelector("#creditCardInp")
-  .addEventListener("input", function (ev) {
-    creditCardInputHandler(ev);
-  });
+
+creditCardInp.addEventListener("input", function (ev) {
+  creditCardInputHandler(ev);
+});
 
 //handling the PIN code input
-enteringNewCreditCard
-  .querySelector("#PINcodeInp")
-  .addEventListener("input", function (ev) {
-    pinCodeInputHandler(ev);
-  });
+
+pinCodeInp.addEventListener("input", function (ev) {
+  pinCodeInputHandler(ev);
+});
 
 //handling the finish button
 finishBtn.addEventListener("click", function (ev) {
@@ -180,16 +244,5 @@ finishBtn.addEventListener("click", function (ev) {
 
 elFormPIN.addEventListener("submit", function (ev) {
   ev.preventDefault();
-  if (myPINcode === enteringPINcodeInp.value) {
-    console.log("correct PIN code");
-  } else {
-    counter++;
-    if (counter >= 3) {
-      alert("invalid PIN codes, please connect the bank");
-    } else {
-      alert(
-        `wrong PIN code! please try again , you have left ${3 - counter} tries`
-      );
-    }
-  }
+  enteringMyPINcode();
 });
