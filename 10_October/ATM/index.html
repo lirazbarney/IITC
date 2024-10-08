@@ -55,10 +55,42 @@
       </button>
     </form>
     <nav class="hidden">
-      <button>show available balance</button>
-      <button>withdraw money</button>
-      <button>deposit money</button>
-      <button>last transactions</button>
+      <div class="wrapper">
+        <h1>choose which action you want to do on the card <span></span></h1>
+        <button onclick="showAvailableBalance()">show available balance</button>
+        <button onclick="withdrawMoney()">withdraw money</button>
+        <button onclick="depositMoney()">deposit money</button>
+        <button
+          class="chose-another-card"
+          onclick="renderAllCards()"
+          type="button"
+        >
+          choose different card
+        </button>
+      </div>
+      <div class="blank-container">
+        <div class="balance hidden">
+          you have <span></span>₪ in your bank account
+        </div>
+        <div class="withdraw hidden">
+          <form action="">
+            <label for="withdrawInp"
+              >choose how much do you want to withdraw</label
+            >
+            <input type="number" name="withdrawInp" id="withdrawInp" min="0" />
+            <button>Withdraw!</button>
+          </form>
+        </div>
+        <div class="deposit hidden">
+          <form action="">
+            <label for="depositInp"
+              >choose how much do you want to deposit</label
+            >
+            <input type="number" name="depositInp" id="depositInp" min="0" />
+            <button>Deposit!</button>
+          </form>
+        </div>
+      </div>
     </nav>
     <script src="main.js"></script>
   </body>
