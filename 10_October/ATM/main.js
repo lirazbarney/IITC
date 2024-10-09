@@ -116,6 +116,7 @@ function finishBtnHandler(ev) {
       );
       myCreditCard = lastCreditCardInpValue;
       myPINcode = lastPINcodeInpValue;
+      myBalance = 1000;
       renderForm();
     } else {
       alert("credit card already exist, please enter different card");
@@ -169,7 +170,7 @@ function renderAllCards() {
       const newCard = document.createElement("p");
       newCard.textContent = allCards[i].cardNumber;
       const newPIN = document.createElement("span");
-      newPIN.textContent = allCards[i].pinCode + allCards[i].balance;
+      newPIN.textContent = allCards[i].pinCode + String(allCards[i].balance);
       newPIN.classList.add("hidden");
       //append the new card
       fullNewCard.appendChild(newCard);
@@ -234,7 +235,7 @@ function enteringMyPINcode() {
 }
 
 function showAvailableBalance() {
-  balance.querySelector("span").textContent = myBalance;
+  balance.querySelector("span").textContent = String(myBalance);
   makeAllHidden(container);
   balance.classList.remove("hidden");
 }
