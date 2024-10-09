@@ -133,7 +133,7 @@ function chosenCreditCard(ev) {
   myCreditCard = currentCard.querySelector("p").textContent;
   const pinNbalance = currentCard.querySelector("span").textContent;
   myPINcode = pinNbalance.substring(0, 4);
-  myBalance = pinNbalance.substring(4);
+  myBalance = Number(pinNbalance.substring(4));
   choosingCreditCard.classList.add("hidden");
   renderForm();
 }
@@ -248,7 +248,7 @@ function withdrawMoney() {
 
 function withdrawAction() {
   myBalance -= withdrawInp.value;
-  localStorage.setItem(myCreditCard, myPINcode + myBalance);
+  localStorage.setItem(myCreditCard, myPINcode + String(myBalance));
   renderMainNav();
 }
 
@@ -263,7 +263,7 @@ function depositAction() {
   console.log(depositInp.value);
   myBalance += Number(depositInp.value);
   console.log(myBalance);
-  localStorage.setItem(myCreditCard, myPINcode + myBalance);
+  localStorage.setItem(myCreditCard, myPINcode + String(myBalance));
   renderMainNav();
 }
 
@@ -278,7 +278,7 @@ if (localStorage.length > 0) {
   if (localStorage.length === 1) {
     myCreditCard = localStorage.key(0);
     myPINcode = localStorage.getItem(myCreditCard).substring(0, 4);
-    myBalance = localStorage.getItem(myCreditCard).substring(4);
+    myBalance = Number(localStorage.getItem(myCreditCard).substring(4));
     renderForm();
   } else {
     renderAllCards();
