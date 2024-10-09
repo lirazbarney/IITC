@@ -271,7 +271,7 @@ function depositAction() {
 //code start from here ⬇️
 
 //if you want to clear the local storage, run this commend ⬇
-localStorage.clear();
+// localStorage.clear();
 
 //which screen to show at the start
 if (localStorage.length > 0) {
