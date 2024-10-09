@@ -4,11 +4,6 @@ function uploadCharacter(name, imgSrc) {
   firstAPI.querySelector("span").textContent = name;
   firstAPI.querySelector("img").setAttribute("src", imgSrc);
 }
-function uploadingJoke(joke) {
-  console.log(joke);
-  const secondAPI = document.querySelector(".chuck-norris");
-  secondAPI.querySelector("span").textContent = joke;
-}
 
 fetch("https://rickandmortyapi.com/api/character/693")
   .then((response) => response.json())
@@ -16,6 +11,12 @@ fetch("https://rickandmortyapi.com/api/character/693")
     console.log(data);
     uploadCharacter(data.name, data.image);
   });
+
+function uploadingJoke(joke) {
+  console.log(joke);
+  const secondAPI = document.querySelector(".chuck-norris");
+  secondAPI.querySelector("span").textContent = joke;
+}
 
 fetch("https://api.chucknorris.io/jokes/random")
   .then((response) => response.json())
