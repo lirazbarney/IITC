@@ -129,12 +129,15 @@ function finishBtnHandler(ev) {
   }
 }
 
-function chosenCreditCard(ev) {
-  const currentCard = ev.currentTarget;
+function chosenCreditCard(targered) {
+  const currentCard = targered;
   myCreditCard = currentCard.querySelector("p").textContent;
   const pinNbalance = currentCard.querySelector("span").textContent;
   myPINcode = pinNbalance.substring(0, 4);
   myBalance = Number(pinNbalance.substring(4));
+  console.log("hello");
+  console.log(myBalance);
+  console.log("world");
   choosingCreditCard.classList.add("hidden");
   renderForm();
 }
@@ -143,6 +146,7 @@ function renderForm() {
   counter = 0;
   console.log(`the desired PIN code is ${myPINcode}`);
   elFormPIN.querySelector("span").textContent = myCreditCard;
+  console.log(myCreditCard);
   //make the form visible, the rest hidden
   makeAllHidden(document.body);
   elFormPIN.classList.remove("hidden");
@@ -155,8 +159,11 @@ function renderAllCards() {
     alert("You have no cards. You are transferred to the adding new card page");
     renderAddingNewCard();
   } else if (allCards.length === 1) {
+    console.log(allCards);
     myCreditCard = allCards[0].cardNumber;
-    myPINcode = allCards[0].pinCode;
+    myPINcode = allCards[0].pinCode.substring(0, 4);
+    myBalance = Number(allCards[0].pinCode.substring(4));
+
     alert(
       "You have only one card. You are transferred to the PIN validation page"
     );
@@ -172,12 +179,23 @@ function renderAllCards() {
       const newPIN = document.createElement("span");
       newPIN.textContent = allCards[i].pinCode + String(allCards[i].balance);
       newPIN.classList.add("hidden");
+      const rmvBtn = document.createElement("button");
+      rmvBtn.textContent = "remove this card";
+      rmvBtn.setAttribute("id", `${allCards[i].cardNumber}_btn`);
+      rmvBtn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        removeCard(ev.target.id.split("_")[0]);
+      });
       //append the new card
       fullNewCard.appendChild(newCard);
       fullNewCard.appendChild(newPIN);
+      fullNewCard.appendChild(rmvBtn);
       cardList.appendChild(fullNewCard);
+
+      // fullNewCard.insertAdjacentElement("afterend", rmvBtn);
       fullNewCard.addEventListener("click", function (ev) {
-        chosenCreditCard(ev);
+        console.log(ev.currentTarget);
+        chosenCreditCard(ev.currentTarget);
       });
     }
     //make the cards list visible, the rest hidden
@@ -198,6 +216,26 @@ function renderAddingNewCard() {
   //make the adding new card page visible, the rest hidden
   makeAllHidden(document.body);
   enteringNewCreditCard.classList.remove("hidden");
+}
+
+function removeCard(cardNumber) {
+  const allCards = getAllCards().filter(function (card) {
+    return card.cardNumber !== cardNumber;
+  });
+  localStorage.clear();
+  for (let i = 0; i < allCards.length; i++) {
+    localStorage.setItem(
+      allCards[i].cardNumber,
+      allCards[i].pinCode + String(allCards[i].balance)
+    );
+  }
+  const newAllCards = getAllCards();
+  console.log("hello");
+  for (let i = 0; i < newAllCards.length; i++) {
+    console.log(newAllCards[i]);
+  }
+  console.log("world");
+  renderAllCards();
 }
 
 function renderMainNav() {
@@ -242,7 +280,7 @@ function showAvailableBalance() {
 
 function withdrawMoney() {
   withdrawInp.value = "";
-  withdrawInp.setAttribute("max", myBalance);
+  withdrawInp.setAttribute("max", Number(myBalance));
   makeAllHidden(container);
   withdraw.classList.remove("hidden");
 }
