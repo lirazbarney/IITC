@@ -7,6 +7,7 @@ function toggleAnswer(questionNumber) {
   if (isAlreadyHidden) {
     answer.classList.remove("hidden");
   }
+  renderPlusMinus();
 }
 
 function HideAllAnswers() {
@@ -15,7 +16,27 @@ function HideAllAnswers() {
     answer.classList.add("hidden");
     answer.addEventListener("click", function () {
       HideAllAnswers();
+      renderPlusMinus();
     });
+  }
+}
+
+function renderPlusMinus() {
+  const questions = document.querySelectorAll(".question-container");
+  console.log(questions);
+  questions.forEach(function (question) {
+    console.log("hello");
+    console.log(question.querySelector(".answer").classList.contains("hidden"));
+  });
+
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].querySelector(".answer").classList.contains("hidden")) {
+      questions[i].querySelector(".plus").classList.remove("hidden");
+      questions[i].querySelector(".minus").classList.add("hidden");
+    } else {
+      questions[i].querySelector(".minus").classList.remove("hidden");
+      questions[i].querySelector(".plus").classList.add("hidden");
+    }
   }
 }
 
