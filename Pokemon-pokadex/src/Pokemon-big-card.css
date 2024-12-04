@@ -1,0 +1,9 @@
+.arrows-div {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.arrow-btn {
+    max-width: 128px;
+}
