@@ -58,7 +58,7 @@ function PokemonBigCard(props) {
                 setLoading(false);
             } catch (err) {
                 let valuesToSet;
-                alert(typeof pokeID)
+                // alert(typeof pokeID)
                 if (typeof pokeID === "string") {
                     const responsePokemon = addedPokemons.find(currentPoke => {
                         return currentPoke.name === pokeID
@@ -74,7 +74,6 @@ function PokemonBigCard(props) {
                         // setLoading(false);
                     }
                 } else {
-                    alert("hello world")
                     valuesToSet = [false, err.message];
                 }
                 console.log(valuesToSet);
@@ -86,7 +85,7 @@ function PokemonBigCard(props) {
                 }
             }
         }
-        alert(pokeID)
+        // alert(pokeID)
         if (pokeID !== 0) {
             getPokemonData();
         }
@@ -131,10 +130,16 @@ function PokemonBigCard(props) {
     let pokemon;
     if (typeof pokeID === "number") {
         pokemon = (pokeID <= 999) ? pokemonData : addedPokemons[pokeID - 1000];
+        if (pokeID > maxIndex) {
+            return "404.. probably you tried to search a pokemon that doesn't exist";
+
+        }
     } else {
         pokemon = pokemonData;
         console.log(pokemon);
     }
+
+
     return (
         <>
             <div className='pokemon-card'>
