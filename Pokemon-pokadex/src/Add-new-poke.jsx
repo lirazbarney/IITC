@@ -9,6 +9,7 @@ function AddNewPoke({ newID, isNumber }) {
     // }
 
     console.log(newID);
+
     function addThePokemon(ev) {
         const evTarget = ev.target;
         if (isNumber(evTarget.pokemonName.value)) {

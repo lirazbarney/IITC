@@ -11,19 +11,30 @@ function PokemonBigCard(props) {
     console.log("");
     // localStorage.clear();
 
-    //defining states
+    // defining states
     const [pokeID, setPokeID] = useState(props.pokeID); //can contain both the pokemon name or it's ID
-    console.log(pokeID, typeof pokeID)
     const [pokemonData, setPokemonData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const addedPokemons = JSON.parse(localStorage.getItem("addedPokemons")) || [];
+    // handle the local storage arrays
+    const addedPokemons = JSON.parse(localStorage.getItem("addedPokemons")).sort((pokeA, pokeB) => { return pokeA.id - pokeB.id }) || []; // retrieve all the pokémons that was edded by the user
+    const availablePokadexIDs = [];
+    const maxID = addedPokemons[addedPokemons.length - 1]?.id || 999;
+    console.log("maxID: ", maxID);
+    if (addedPokemons.length === 0) {
+        availablePokadexIDs.push(1000);
+    } else {
+        const idArray = addedPokemons.map(currenPoke => { return currenPoke.id }).sort((a, b) => (a - b));
+        for (let id = 1000; id <= (maxID + 1); id++) {
+            if (!idArray.includes(id)) {
+                availablePokadexIDs.push(id)
+            }
+        }
+    } // define an array of all the available IDs with the last item is the highest ever ID
+    console.log("addedPokemons: ", addedPokemons);
 
-    const minIndex = 1;
-    let maxIndex = 999 + addedPokemons.length;
-
-    //this function checks if a given string is made only by numerical characters.
+    // this function checks if a given string is made only by numerical characters.
     function isNumber(str) {
         const NUMBERS = "1234567890";
 
@@ -35,7 +46,7 @@ function PokemonBigCard(props) {
         return true;
     }
 
-    //this function return the pokemon number in a 3 digit form
+    // this function return the pokemon number in a 3 digit form
     function getPokemonNumber(num) {
         if (num < 10) {
             return `00${num}`
@@ -47,6 +58,62 @@ function PokemonBigCard(props) {
         }
     }
 
+    // this function will delete a pokemon from the memory.
+    // again... YOU ARE NOT A POKÉMON GOD. YOU CAN NOT DELETE REGULAR POKÉMONS!!!!
+    //  but i will alow you again to be the pokémon god and delete only the ones you created.
+    function deletePokemon(id) {
+        const indexOfPoke = addedPokemons.findIndex(pokemon => { return pokemon.id === id });
+        const updatedAddedPokemons = addedPokemons.filter((_, index) => { return index !== indexOfPoke });
+        localStorage.setItem("addedPokemons", JSON.stringify(updatedAddedPokemons));
+        if (updatedAddedPokemons.length === 0) {
+            setPokeID(999);
+        } else {
+            if (indexOfPoke === 0) {
+                setPokeID(updatedAddedPokemons[0].id);
+            } else {
+                setPokeID(updatedAddedPokemons[indexOfPoke - 1].id);
+            }
+        }
+        alert("pokemon was deleted!")
+    }
+
+    // this function handle the search pokemon functionality
+    function searchForPoke(ev) {
+        ev.preventDefault();
+        let newID = ev.target.newPokeID.value;
+        ev.target.newPokeID.value = "";
+        let doesPokeExist = false;;
+        if (isNumber(newID)) {
+            newID = Number(newID);
+            if ((newID < 1000) && (newID >= 0)) { //if newID in 1...999 (normal pokemon)
+                doesPokeExist = true;
+            } else if (newID > 999) { //if newID in 999... (should be an added pokemon)
+                doesPokeExist = ((newID <= maxID) && (!availablePokadexIDs.includes(newID)));
+            }
+            if (!doesPokeExist) {
+                setError("404.. probably you tried to search a pokemon that doesn't exist")
+            } else {
+                setPokeID(newID);
+            }
+        } else { //typeof newID === "string"
+            setPokeID(newID.toLowerCase())
+        }
+    }
+
+    function changePokemon(id, indicator) {
+        if (id < 999) {
+            setPokeID(id + indicator);
+        } else if ((pokeID === 999) && (indicator > 0)) {
+            setPokeID(addedPokemons[0].id);
+        } else if ((pokeID === addedPokemons[0].id) && (indicator < 0)) {
+            setPokeID(999);
+        } else {
+            const currentIndex = addedPokemons.findIndex(currentPoke => { return currentPoke.id === id })
+            setPokeID(addedPokemons[currentIndex + indicator].id)
+        }
+
+    }
+
     // this useEffect function will be executed when either 
     // the component will be mounted for the first time or
     // when pokeID will be changed
@@ -54,29 +121,22 @@ function PokemonBigCard(props) {
         const getPokemonData = async () => {
             try {
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeID}`);
-                setPokemonData(response.data);
-                setLoading(false);
+                if (response.data.id > 999) {
+                    throw new Error("Request failed with status code 404");
+                } else {
+                    setPokemonData(response.data);
+                    setLoading(false);
+                }
             } catch (err) {
                 let valuesToSet;
-                // alert(typeof pokeID)
-                if (typeof pokeID === "string") {
-                    const responsePokemon = addedPokemons.find(currentPoke => {
-                        return currentPoke.name === pokeID
-                    })
-                    console.log(responsePokemon);
-                    if (responsePokemon) {
-                        valuesToSet = [true, responsePokemon];
-                        // setPokemonData(responsePokemon);
-                        // setLoading(false)
-                    } else {
-                        valuesToSet = [false, err.message];
-                        // setError(err.message);
-                        // setLoading(false);
-                    }
+                const propertyName = (typeof pokeID === "string") ? "name" : "id";
+                const responsePokemon = addedPokemons.find(currentPoke => { return currentPoke[propertyName] === pokeID });
+                if (responsePokemon) {
+                    valuesToSet = [true, responsePokemon];
                 } else {
                     valuesToSet = [false, err.message];
                 }
-                console.log(valuesToSet);
+
                 setLoading(false);
                 if (valuesToSet[0]) {
                     setPokemonData(valuesToSet[1]);
@@ -85,33 +145,18 @@ function PokemonBigCard(props) {
                 }
             }
         }
-        // alert(pokeID)
+
         if (pokeID !== 0) {
             getPokemonData();
         }
-
-        // if (typeof pokeID === "number") {
-        //     if ((pokeID > 0) && (pokeID < maxIndex)) {
-        //         getPokemonData();
-        //     } else {
-        //         if (pokeID > 999) {
-        //             const index = pokeID - 1000;
-        //             console.log(addedPokemons[index]);
-        //         }
-        //     }
-        // } else {
-        //     getPokemonData();
-        // }
     }, [pokeID])
-
-    console.log(loading, error);
 
     if (loading) {
         return "loading..."
     }
 
-    if (error || (pokemonData.id > maxIndex) || (pokemonData == null)) {
-        if ((error === "Request failed with status code 404") || pokemonData.id > maxIndex) {
+    if (error || (pokemonData == null)) {
+        if (error === "Request failed with status code 404") {
             return "404.. probably you tried to search a pokemon that doesn't exist";
         }
         return error || "pokemonData is empty"
@@ -123,70 +168,79 @@ function PokemonBigCard(props) {
         // but for the CRUD sh*t... i will allow you to be pokémon god.
         // but just for now. 
     }
-    if (pokeID === 0) {
-        return (<AddNewPoke newID={maxIndex + 1} isNumber={isNumber} />)
-    }
 
     let pokemon;
     if (typeof pokeID === "number") {
-        pokemon = (pokeID <= 999) ? pokemonData : addedPokemons[pokeID - 1000];
-        if (pokeID > maxIndex) {
+        const newPokemonIndex = addedPokemons.findIndex(currenPoke => {
+            return currenPoke.id === pokeID;
+        });
+        // alert(pokeID > 999)
+        // alert(newPokemonIndex !== -1)
+        if ((pokeID > 999) && (newPokemonIndex !== -1)) { // handling a pokemon that was manually added
+            // alert(newPokemonIndex)
+            pokemon = addedPokemons[newPokemonIndex];
+        } else if (pokeID === 0) {
+            return (<AddNewPoke newID={availablePokadexIDs.shift()} isNumber={isNumber} />)
+        } else if ((pokeID > 0) && (pokeID < 1000)) {
+            pokemon = pokemonData;
+        } else {
             return "404.. probably you tried to search a pokemon that doesn't exist";
-
         }
+        console.log("pokemon: ", pokemon);
+
+        // if (pokeID <= 999) {
+        //     pokemon = pokemonData;
+        // } else if (newPokemon) {
+        //     pokemon = newPokemon;
+        // } else {
+        //     return "404.. probably you tried to search a pokemon that doesn't exist";
+        // }
     } else {
         pokemon = pokemonData;
-        console.log(pokemon);
     }
+    const haveNext = (pokemon.id < maxID);
 
-
-    return (
-        <>
-            <div className='pokemon-card'>
-                {/* <HeaderNav /> */}
-                <div className='arrows-div'>
-                    {(pokemon.id !== minIndex) && <button className="prev-poke-btn arrow-btn" onClick={() => { setPokeID(pokemon.id - 1) }}>previous pokadex pokemon</button>}
-                    {(pokemon.id !== maxIndex) && <button className="next-poke-btn arrow-btn" onClick={() => { setPokeID(pokemon.id + 1) }}>next pokadex pokemon</button>}
-                </div>
-                <form onSubmit={(ev) => {
-                    ev.preventDefault();
-                    let newID = ev.target.newPokeID.value;
-                    ev.target.newPokeID.value = "";
-                    if (isNumber(newID)) {
-                        newID = Number(newID);
-                    }
-                    setPokeID(newID);
-                }}>
-                    <input name='newPokeID' placeholder='pokemon name or ID' required />
-                    <button>search pokemon</button>
-                </form>
-                <header>
-                    <div className='pokemon-info-div'>
-                        <h1 className='pokemon-name'>{pokemon.name}</h1>
-                        <ul className='pokemon-types-ul'>
-                            {pokemon.types.map(pokeType => {
-                                return <li key={pokeType.type.name}>{pokeType.type.name}</li>
-                            })}
-                        </ul>
-                    </div>
-                    <div className='pokemon-number-div'>#{getPokemonNumber(pokemon.id)}</div>
-                </header>
-                <main>
-                    <img src={pokemon.sprites?.front_default || null} alt={pokemon.name} />
-                    <div className='stats-div'>
-                        <ul>
-                            <li>base experience: {pokemon.base_experience}</li>
-                            <li>height: {pokemon.height * 10}cm</li>
-                            <li>weight: {pokemon.weight / 10}kg</li>
-                            {pokemon.stats.map(currentStat => {
-                                return <li key={currentStat.stat.name}>{currentStat.base_stat} {currentStat.stat.name}</li>
-                            })}
-                        </ul>
-                    </div>
-                </main>
-                <button onClick={() => setPokeID(0)}>add new pokemon</button>
+    return (<>
+        <div className='pokemon-card'>
+            {/* <HeaderNav /> */}
+            <div className='arrows-div'>
+                {(pokemon.id !== 1) && <button className="prev-poke-btn arrow-btn" onClick={() => { changePokemon(pokemon.id, -1) }}>previous pokadex pokemon</button>}
+                {(haveNext) && <button className="next-poke-btn arrow-btn" onClick={() => { changePokemon(pokemon.id, 1) }}>next pokadex pokemon</button>}
             </div>
-        </>
+            <form onSubmit={(ev) => {
+                searchForPoke(ev);
+            }}>
+                <input name='newPokeID' placeholder='pokemon name or ID' required />
+                <button>search pokemon</button>
+            </form>
+            <header>
+                <div className='pokemon-info-div'>
+                    <h1 className='pokemon-name'>{pokemon.name}</h1>
+                    <ul className='pokemon-types-ul'>
+                        {pokemon.types.map(pokeType => {
+                            return <li key={pokeType.type.name}>{pokeType.type.name}</li>
+                        })}
+                    </ul>
+                </div>
+                <div className='pokemon-number-div'>#{getPokemonNumber(pokemon.id)}</div>
+            </header>
+            <main>
+                <img src={pokemon.sprites?.front_default || null} alt={pokemon.name} />
+                <div className='stats-div'>
+                    <ul>
+                        <li>base experience: {pokemon.base_experience}</li>
+                        <li>height: {pokemon.height * 10}cm</li>
+                        <li>weight: {pokemon.weight / 10}kg</li>
+                        {pokemon.stats.map(currentStat => {
+                            return <li key={currentStat.stat.name}>{currentStat.base_stat} {currentStat.stat.name}</li>
+                        })}
+                    </ul>
+                    <button className={pokemon.id > 999 ? "" : "hidden"} onClick={() => { deletePokemon(pokemon.id) }}>delete pokemon</button>
+                </div>
+            </main>
+            <button onClick={() => setPokeID(0)}>add new pokemon</button>
+        </div>
+    </>
     )
 }
 

@@ -7,3 +7,7 @@
 .arrow-btn {
     max-width: 128px;
 }
+
+.hidden {
+    display: none;
+}
