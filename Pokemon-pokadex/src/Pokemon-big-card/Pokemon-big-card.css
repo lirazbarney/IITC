@@ -1,0 +1,119 @@
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.pokemon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.normal-type::before {
+    background-image: url("../../public/symbols/normal.png");
+}
+
+.fire-type::before {
+    background-image: url("../../public/symbols/fire.png");
+}
+
+.fighting-type::before {
+    background-image: url("../../public/symbols/fighting.png");
+}
+
+.water-type::before {
+    background-image: url("../../public/symbols/water.png");
+}
+
+.flying-type::before {
+    background-image: url("../../public/symbols/flying.png");
+}
+
+.grass-type::before {
+    background-image: url("../../public/symbols/grass.png");
+}
+
+.poison-type::before {
+    background-image: url("../../public/symbols/poison.png");
+}
+
+.electric-type::before {
+    background-image: url("../../public/symbols/electric.png");
+}
+
+.ground-type::before {
+    background-image: url("../../public/symbols/ground.png");
+}
+
+.rock-type::before {
+    background-image: url("../../public/symbols/rock.png");
+}
+
+.psychic-type::before {
+    background-image: url("../../public/symbols/psychic.png");
+}
+
+.bug-type::before {
+    background-image: url("../../public/symbols/bug.png");
+}
+
+.ice-type::before {
+    background-image: url("../../public/symbols/ice.png");
+}
+
+.dragon-type::before {
+    background-image: url("../../public/symbols/dragon.png");
+}
+
+.ghost-type::before {
+    background-image: url("../../public/symbols/ghost.png");
+}
+
+.steel-type::before {
+    background-image: url("../../public/symbols/steel.png");
+}
+
+.fairy-type::before {
+    background-image: url("../../public/symbols/fairy.png");
+}
+
+.dark-type::before {
+    background-image: url("../../public/symbols/dark.png");
+}
+
+.arrows-div {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.arrow-btn {
+    max-width: 128px;
+}
+
+.hidden {
+    display: none;
+}
+
+.poke-img {
+    box-shadow: 5px 5px 10px black;
+}
+
+.pokemon-types-div {
+    margin: 4px;
+}
+
+.type-img {
+    margin: 4px;
+}

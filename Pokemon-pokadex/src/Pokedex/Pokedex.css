@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: auto;
+    width: 100%;
+}
+
+.pokedex-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

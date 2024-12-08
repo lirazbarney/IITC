@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+
+.card {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.poke-card {
+    display: flex;
+    margin: 8px;
+    width: auto;
+    border: 1px black solid;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 32px;
+    box-shadow: 10px 15px 10px black;
+    position: relative;
+    z-index: 1;
+}
+
+.poke-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+h1 {
+    margin: 0;
+}
+
+.poke-info {
+    display: flex;
+
+    justify-content: center;
+    margin-block: 6px;
+    gap: 16px;
+}
+
+.normal {
+    background-color: rgb(168, 167, 122);
+}
+
+.normal::before {
+    background-image: url("../../public/symbols/normal.png");
+}
+
+.fire {
+    background-color: rgb(238, 129, 48);
+}
+
+.fire::before {
+    background-image: url("../../public/symbols/fire.png");
+}
+
+.water {
+    background-color: rgb(99, 144, 240);
+}
+
+.water::before {
+    background-image: url("../../public/symbols/water.png");
+}
+
+.grass {
+    background-color: rgb(122, 199, 76);
+}
+
+.grass::before {
+    background-image: url("../../public/symbols/grass.png");
+}
+
+.electric {
+    background-color: rgb(247, 208, 44);
+}
+
+.electric::before {
+    background-image: url("../../public/symbols/electric.png");
+}
+
+.ice {
+    background-color: rgb(150, 217, 214);
+}
+
+.ice::before {
+    background-image: url("../../public/symbols/ice.png");
+}
+
+.fighting {
+    background-color: rgb(194, 46, 40);
+}
+
+.fighting::before {
+    background-image: url("../../public/symbols/fighting.png");
+}
+
+.poison {
+    background-color: rgb(163, 62, 161);
+}
+
+.poison::before {
+    background-image: url("../../public/symbols/poison.png");
+}
+
+.ground {
+    background-color: rgb(226, 191, 101);
+}
+
+.ground::before {
+    background-image: url("../../public/symbols/ground.png");
+}
+
+.flying {
+    background-color: rgb(169, 143, 243);
+}
+
+.flying::before {
+    background-image: url("../../public/symbols/flying.png");
+}
+
+.psychic {
+    background-color: rgb(249, 85, 135);
+}
+
+.psychic::before {
+    background-image: url("../../public/symbols/psychic.png");
+}
+
+.bug {
+    background-color: rgb(166, 185, 26);
+}
+
+.bug::before {
+    background-image: url("../../public/symbols/bug.png");
+}
+
+.rock {
+    background-color: rgb(182, 161, 54);
+}
+
+.rock::before {
+    background-image: url("../../public/symbols/rock.png");
+}
+
+.ghost {
+    background-color: rgb(115, 87, 151);
+}
+
+.ghost::before {
+    background-image: url("../../public/symbols/ghost.png");
+}
+
+.dragon {
+    background-color: rgb(111, 53, 252);
+}
+
+.dragon::before {
+    background-image: url("../../public/symbols/dragon.png");
+}
+
+.dark {
+    background-color: rgb(112, 87, 70);
+}
+
+.dark::before {
+    background-image: url("../../public/symbols/dark.png");
+}
+
+.steel {
+    background-color: rgb(183, 183, 206);
+}
+
+.steel::before {
+    background-image: url("../../public/symbols/steel.png");
+}
+
+.fairy {
+    background-color: rgb(214, 133, 173);
+}
+
+.fairy::before {
+    background-image: url("../../public/symbols/fairy.png");
+}
+
+.types-div {
+    align-self: center;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.poke-img {
+    box-shadow: 5px 5px 10px black;
+    border-radius: 32px;
+}
+
+.poke-card:hover {
+    opacity: 0.5;
+    border: 3px solid black;
+}
