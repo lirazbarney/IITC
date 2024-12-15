@@ -1,0 +1,76 @@
+{
+  "tasks": [
+    {
+      "id": "cMaFfC",
+      "title": "low-pending",
+      "description": "low-pending",
+      "dueDate": "2024-12-10",
+      "priority": "low",
+      "status": "pending"
+    },
+    {
+      "id": "BJXyql",
+      "title": "medium-pending",
+      "description": "medium-pending",
+      "dueDate": "2024-12-10",
+      "priority": "medium",
+      "status": "pending"
+    },
+    {
+      "id": "UqeCTe",
+      "title": "high-pending",
+      "description": "high-pending",
+      "dueDate": "",
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "id": "jqYpyc",
+      "title": "low-in-progress",
+      "description": "low-in-progress",
+      "dueDate": "",
+      "priority": "low",
+      "status": "in progress"
+    },
+    {
+      "id": "nTgGoM",
+      "title": "medium-in-progress",
+      "description": "medium-in-progress",
+      "dueDate": "",
+      "priority": "medium",
+      "status": "in progress"
+    },
+    {
+      "id": "BVgXTM",
+      "title": "high-in-progress",
+      "description": "high-in-progress",
+      "dueDate": "",
+      "priority": "high",
+      "status": "in progress"
+    },
+    {
+      "id": "lGRyUp",
+      "title": "low-completed",
+      "description": "low-completed",
+      "dueDate": "",
+      "priority": "low",
+      "status": "completed"
+    },
+    {
+      "id": "WsBzMV",
+      "title": "medium-completed",
+      "description": "medium-completed",
+      "dueDate": "",
+      "priority": "medium",
+      "status": "completed"
+    },
+    {
+      "id": "TdyFIC",
+      "title": "high-completed",
+      "description": "high-completed",
+      "dueDate": "",
+      "priority": "high",
+      "status": "completed"
+    }
+  ]
+}

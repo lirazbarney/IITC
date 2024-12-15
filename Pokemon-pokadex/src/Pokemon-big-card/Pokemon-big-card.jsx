@@ -154,7 +154,6 @@ export default function PokemonBigCard() {
 
         <HeaderNav />
         <div className={`pokemon-card ${pokemon.types[0].type.name}-type`}>
-            <Link to="/"><button>return to pokedex</button></Link >
 
             {/* the conditional rendering of the previous and the next Pokadex Pokémons buttons */}
             <div className='arrows-div' >
@@ -163,7 +162,6 @@ export default function PokemonBigCard() {
                 {(pokemon.id < maxID) && <button className="next-poke-btn arrow-btn" onClick={() => { changePokemon(pokemon.id, 1) }}>next Pokadex Pokémon</button>}
             </div >
 
-            <SearchPokemon />
 
             <header>
                 <div className='pokemon-info-div'>
@@ -187,6 +185,7 @@ export default function PokemonBigCard() {
                         <li>height: {pokemon.height * 10}cm</li>
                         <li>weight: {pokemon.weight / 10}kg</li>
                         {pokemon.stats.map(currentStat => {
+                            {/* min: 0, max: 255` */ }
                             return <li key={currentStat.stat.name}>{currentStat.base_stat} {currentStat.stat.name}</li>
                         })}
                     </ul>
@@ -195,10 +194,6 @@ export default function PokemonBigCard() {
                     }}>delete pokemon</button>
                 </div>
             </main>
-
-            <Link to="/add-pokemon">
-                <button>add new pokemon</button>
-            </Link>
         </div >
     </>
     )

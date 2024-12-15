@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import isNumber from "../../utilities/isNumber";
 import HeaderNav from "../HeaderNav/HeaderNav";
+import { useEffect, useState } from "react";
 
 export default function AddNewPoke() {
 
@@ -16,6 +17,22 @@ export default function AddNewPoke() {
     const availibleIDs = JSON.parse(localStorage.getItem("availablePokadexIDs")) || [1000];
     const newID = availibleIDs.shift();
     console.log("newID: ", newID);
+
+
+    const [formData, setFormData] = useState({
+        pokeName: "",
+        type1: "",
+        type2: "",
+        baseXP: 0,
+        height: 0,
+        weight: 0,
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        specialA: 0,
+        specialD: 0,
+        speed: 0
+    });
 
     function addThePokemon(ev) {
         ev.preventDefault();
@@ -89,13 +106,34 @@ export default function AddNewPoke() {
         }
     }
 
+    function hanleTypeChange(ev) {
+        const inputs = document.querySelectorAll("input");
+        console.log(ev.target.value);
+
+        setFormData({
+            pokeName: document.querySelector("#pokemonName").value,
+            type1: ev.target.value,
+            type2: "",
+            baseXP: document.querySelector("#pokemonBaseXP").value,
+            height: document.querySelector("#pokemonHeight").value,
+            weight: document.querySelector("#pokemonWeight").value,
+            hp: document.querySelector("#pokemonHP").value,
+            attack: document.querySelector("#pokemonAttack").value,
+            defense: document.querySelector("#pokemonDefense").value,
+            specialA: document.querySelector("#pokemonSpecialAttack").value,
+            specialD: document.querySelector("#pokemonSpecialDefense").value,
+            speed: document.querySelector("#pokemonSpeed").value,
+        })
+    }
+
     return (<>
         <HeaderNav pathEndPoint="/add-pokemon" />
         <form onSubmit={(ev) => addThePokemon(ev)}>
             <label htmlFor="pokemonName">pokemon name:</label>
-            <input name="pokemonName" id="pokemonName" required /> <br />
+            <input name="pokemonName" id="pokemonName" value={formData.pokeName} required /> <br />
+
             <label htmlFor="pokemonType1">pokemon type (first slot):</label>
-            <select name="pokemonType1" id="pokemonType1" required>
+            <select name="pokemonType1" id="pokemonType1" value={formData.type1} onChange={(ev) => { hanleTypeChange(ev) }} required>
                 <option value="" disabled selected>Select a type</option>
                 <option value="normal">Normal</option>
                 <option value="fire">Fire</option>
@@ -116,8 +154,9 @@ export default function AddNewPoke() {
                 <option value="steel">Steel</option>
                 <option value="fairy">Fairy</option>
             </select> <br />
+
             <label htmlFor="pokemonType2">pokemon type (second slot):</label>
-            <select name="pokemonType2" id="pokemonType2">
+            <select name="pokemonType2" id="pokemonType2" value={formData.type2}>
                 <option value="" disabled selected>Select a type</option>
                 <option value="normal">Normal</option>
                 <option value="fire">Fire</option>
@@ -138,24 +177,36 @@ export default function AddNewPoke() {
                 <option value="steel">Steel</option>
                 <option value="fairy">Fairy</option>
             </select> <br />
+
             <label htmlFor="pokemonBaseXP">pokemon base experience:</label>
-            <input type="number" min={0} name="pokemonBaseXP" id="pokemonBaseXP" required /> <br />
+            <input type="number" min={0} name="pokemonBaseXP" id="pokemonBaseXP" value={formData.baseXP} required /> <br />
+
             <label htmlFor="pokemonHeight">pokemon height:</label>
-            <input type="number" min={0} name="pokemonHeight" id="pokemonHeight" required /> <br />
+            <input type="number" min={0} name="pokemonHeight" id="pokemonHeight" value={formData.height} required /> <br />
+
             <label htmlFor="pokemonWeight">pokemon weight:</label>
-            <input type="number" min={0} name="pokemonWeight" id="pokemonWeight" required /> <br />
+            <input type="number" min={0} name="pokemonWeight" id="pokemonWeight" value={formData.weight} required /> <br />
+
             <label htmlFor="pokemonHP">pokemon hp:</label>
-            <input type="number" min={0} name="pokemonHP" id="pokemonHP" required /> <br />
+            <input type="number" min={0} name="pokemonHP" id="pokemonHP" value={formData.hp} required /> <br />
+
             <label htmlFor="pokemonAttack">pokemon attack:</label>
-            <input type="number" min={0} name="pokemonAttack" id="pokemonAttack" required /> <br />
+            <input type="number" min={0} name="pokemonAttack" id="pokemonAttack" value={formData.attack} required /> <br />
+
             <label htmlFor="pokemonDefense">pokemon defense:</label>
-            <input type="number" min={0} name="pokemonDefense" id="pokemonDefense" required /> <br />
+            <input type="number" min={0} name="pokemonDefense" id="pokemonDefense" value={formData.defense} required /> <br />
+
             <label htmlFor="pokemonSpecialAttack">pokemon special attack:</label>
-            <input type="number" min={0} name="pokemonSpecialAttack" id="pokemonSpecialAttack" required /> <br />
+            <input type="number" min={0} name="pokemonSpecialAttack" id="pokemonSpecialAttack" value={formData.specialA} required /> <br />
+
             <label htmlFor="pokemonSpecialDefense">pokemon special defense:</label>
-            <input type="number" min={0} name="pokemonSpecialDefense" id="pokemonSpecialDefense" required /> <br />
+            <input type="number" min={0} name="pokemonSpecialDefense" id="pokemonSpecialDefense" value={formData.specialD} required /> <br />
+
             <label htmlFor="pokemonSpeed">pokemon speed</label>
-            <input type="number" min={0} name="pokemonSpeed" id="pokemonSpeed" required /> <br />
+            <input type="number" min={0} name="pokemonSpeed" id="pokemonSpeed" value={formData.speed} required /> <br />
+
+            <img src={`../../public/symbols/${formData.type1}` || null} alt="" />
+
             <button>save the new pokemon</button>
         </form > </>)
 }

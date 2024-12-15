@@ -12,7 +12,8 @@
 .poke-card {
     display: flex;
     margin: 8px;
-    width: auto;
+    width: 325px;
+    height: 175px;
     border: 1px black solid;
     flex-direction: column;
     padding: 8px;
@@ -20,6 +21,7 @@
     box-shadow: 10px 15px 10px black;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
 .poke-card::before {
@@ -37,6 +39,9 @@
 
 h1 {
     margin: 0;
+    overflow: auto;
+    height: 40px;
+    white-space: nowrap;
 }
 
 .poke-info {
@@ -199,11 +204,16 @@ h1 {
 }
 
 .poke-img {
-    box-shadow: 5px 5px 10px black;
     border-radius: 32px;
+    box-shadow: 0 0;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.poke-img:hover {
+    box-shadow: 5px 5px 10px black;
 }
 
 .poke-card:hover {
-    opacity: 0.5;
+    opacity: 0.75;
     border: 3px solid black;
 }

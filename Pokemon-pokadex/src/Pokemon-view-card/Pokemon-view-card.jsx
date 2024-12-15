@@ -36,14 +36,13 @@ function PokemonViewCard(props) {
     return <>
         <Link to={`/pokemon/${props.name}`} className="card">
             <div className={`${pokeData.types[0].type.name} poke-card`}>
-                <h1>{pokeData.name} {getPokemonNumber(pokeData.id)}</h1>
+                <h1>{getPokemonNumber(pokeData.id)} {pokeData.name.split("-").join(" ")}</h1>
                 <div className="poke-info">
 
                     <div className="types-div">
                         {pokeData.types.map((currentType) => {
                             const typeName = currentType.type.name;
                             return <img src={`../../public/names/${typeName}.png`} alt={`${typeName} type`} key={typeName} />
-                            // return <span className={`${typeName} type-circle`} key={typeName}> {typeName}</span>
                         })}
                     </div>
                     <img className="poke-img" src={pokeData.sprites.front_default || null} alt={`${pokeData.name} photo`} />

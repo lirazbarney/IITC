@@ -20,9 +20,9 @@ export default function HeaderNav({ pathEndPoint }) {
     return (<>
         <header className="header-nav">
             <div>
-                <Link to="/"><span className={`${isHome ? "active" : ""} span-style`}>Pokédex</span></Link>
+                <Link to="/"><span className={`${isHome ? "active" : "clickable-span"} span-style`}>Pokédex</span></Link>
                 <span className="span-style"> | </span>
-                <Link to="/add-pokemon"><span className={`${isAddNew ? "active" : ""} span-style`}> add new Pokémon</span></Link>
+                <Link to="/add-pokemon"><span className={`${isAddNew ? "active" : "clickable-span"} span-style`}> add new Pokémon</span></Link>
             </div>
             <SearchPokemon />
         </header >
