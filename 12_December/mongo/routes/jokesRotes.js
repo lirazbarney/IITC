@@ -8,8 +8,8 @@ const {
   deleteJoke,
 } = require("../controllers/jokesController.js");
 
-//DELETE /jokes/:id
-router.delete(":id", deleteJoke);
+// //DELETE /jokes/:id
+// router.delete(":id", deleteJoke);
 
 //POST /jokes/add
 router.post("/add", addNewJoke);

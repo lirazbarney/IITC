@@ -53,6 +53,7 @@ const jokes = [
   },
 ];
 
+//GET /jokes/random
 const getRandomJoke = (req, res) => {
   const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
   res.send(randomJoke);
@@ -92,5 +93,4 @@ module.exports = {
   getJokes,
   getSpecificJoke,
   addNewJoke,
-  deleteJoke,
 };

@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-app.use("/animals", animalsRoutes);
+app.use("/api/v1/animals", animalsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
