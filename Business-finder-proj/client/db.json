@@ -1,0 +1,82 @@
+{
+  "business": [
+    {
+      "id": "101050",
+      "name": "IITC",
+      "description": "A very nice collage in the heart of Ramat-Gan",
+      "category": "Programming collage",
+      "owner": "idk for now what to write here",
+      "subscribers": [],
+      "reviews": []
+    },
+    {
+      "id": "101051",
+      "name": "POKÉMON center",
+      "description": "Its where nurse Joy working",
+      "category": "Hospital",
+      "owner": "Nurse Joy",
+      "subscribers": [],
+      "reviews": []
+    },
+    {
+      "id": "101052",
+      "name": "Leonardo Hotel",
+      "description": "I guess that thi is an hotel",
+      "category": "Hotel",
+      "owner": "Da-vinci",
+      "subscribers": [],
+      "reviews": []
+    },
+    {
+      "id": "101053",
+      "name": "Glida Golda",
+      "description": "An ice-cream shop",
+      "category": "Ice-cream shop",
+      "owner": "Golda Meir",
+      "subscribers": [],
+      "reviews": []
+    }
+  ],
+  "users": [
+    {
+      "id": "203040",
+      "name": "Nurse Joy",
+      "email": "nursejoy@gmail.com",
+      "password": "chansey123",
+      "plan": "Standard",
+      "savedBusinesses": []
+    },
+    {
+      "id": "203041",
+      "name": "Da-vinci",
+      "email": "pizzadivinci@gmail.com",
+      "password": "MyMonaLisa",
+      "plan": "Standard",
+      "savedBusinesses": []
+    },
+    {
+      "id": "203042",
+      "name": "Golda Meir",
+      "email": "whatisyomkippur@gmail.com",
+      "password": "<cigarets3",
+      "plan": "Standard",
+      "savedBusinesses": []
+    },
+    {
+      "id": "203043",
+      "name": "Liraz Bar-Nir",
+      "email": "lirazbarnir@gmail.com",
+      "password": "purpleBarney",
+      "plan": "Standard",
+      "savedBusinesses": []
+    },
+    {
+      "id": "203044",
+      "name": "That guy",
+      "email": "randomguy@gmail.com",
+      "password": "guyguy13",
+      "plan": "Standard",
+      "savedBusinesses": []
+    }
+  ]
+}
