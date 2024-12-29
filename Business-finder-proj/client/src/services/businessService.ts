@@ -14,8 +14,6 @@ export const getBusinesses = async (): Promise<Business[]> => {
 
 export const deleteBusiness = async (id: string): Promise<void> => {
   try {
-    console.log(id);
-
     // await axios.delete(`http://localhost:3000/api/v1/businesses/${id}`); //1
     await axios.delete(`${BASE_URL}businesses/${id}`); //2
   } catch (err) {

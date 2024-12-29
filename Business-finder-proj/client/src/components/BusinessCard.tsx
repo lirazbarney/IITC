@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Business from "../../types/businessType";
 import { UserContext } from "../providers/user-context";
 import Review from "./Review";
+import { addSub } from "../services/subscriptionService";
 
 interface BusinessCardProps {
   business: Business;
@@ -15,9 +16,10 @@ export default function BusinessCard({
   const userContext = useContext(UserContext);
   let isMyBusiness = false;
   let isSub: boolean | undefined;
+  let userID: string = "";
 
   if (userContext.user) {
-    const userID = userContext.user.id;
+    userID = userContext.user.id;
     if (userID === business.owner) {
       isMyBusiness = true;
     } else if (business.subscribers.includes(userID)) {
@@ -57,7 +59,12 @@ export default function BusinessCard({
         )}
         {isSub === false && (
           <div className="flex gap-1">
-            <button className="border border-black">add subscription</button>
+            <button
+              className="border border-black"
+              onClick={() => addSub(business._id, userID)}
+            >
+              add subscription
+            </button>
             <button className="border border-black">add review</button>
           </div>
         )}

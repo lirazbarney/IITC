@@ -24,6 +24,14 @@ interface UserProviderProps {
 export default function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
+  //checks for cookies
+
+  //pseudo code:
+  // 1. check if there is a token inside the cookies
+  // 2. if there is a token
+  // 2 a. "untoken" the token and recive the user object
+  // 2 b. set the user using setUser to the reviled user object
+
   function login(user: User) {
     setUser(user);
   }

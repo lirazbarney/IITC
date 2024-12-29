@@ -14,9 +14,12 @@ export default function Navbar() {
   if (user?.user) {
     return (
       <>
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <h1>hello {user.user.name}!</h1>
-          <button onClick={userLogOut}>log out</button>
+          <Link to="/">
+            <button onClick={userLogOut}>log out</button>
+          </Link>
+          <Link to="/business/create">+</Link>
         </div>
       </>
     );
