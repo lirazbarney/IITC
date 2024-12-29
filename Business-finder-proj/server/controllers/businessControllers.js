@@ -8,6 +8,7 @@ const getAllBusinesses = async (req, res) => {
     res.status(500).send("sever error");
   }
 }; //✅
+//send 200, 500
 
 const addNewBusiness = async (req, res) => {
   const { name, description, category, owner } = req.body;

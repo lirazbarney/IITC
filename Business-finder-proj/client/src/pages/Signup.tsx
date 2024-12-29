@@ -1,7 +1,16 @@
 import axios from "axios";
 import validEmail from "../../utils/emailValidation";
+import { useContext } from "react";
+import { UserContext } from "../providers/user-context";
+import User from "../../types/userType";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
+
+  const userContext = useContext(UserContext);
+  const login = userContext.login;
+
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     const data = new FormData(ev.target as HTMLFormElement);
@@ -15,7 +24,20 @@ export default function Signup() {
           "http://localhost:3000/api/v1/auth/signup",
           { name, email, password }
         );
+        console.log(result);
+
+        const user = result.data.result;
+        console.log(user);
+
+        const newUser: User = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          plan: user.plan,
+        };
+        login(newUser);
         alert(`signed up! hello ${result.data.result.name}!`);
+        navigate("/");
       } catch (err) {
         if (axios.isAxiosError(err)) {
           switch (err.response?.status) {

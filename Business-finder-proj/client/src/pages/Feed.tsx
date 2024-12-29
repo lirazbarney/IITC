@@ -1,67 +1,75 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import useBusinesses from "../hooks/use-businesses";
+
+import BusinessCard from "../components/BusinessCard";
+import Business from "../../types/businessType";
+import { deleteBusiness } from "../services/businessService";
 
 export default function Feed() {
-  const [businesses, setBusinesses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, error, isLoading, isFetching } = useBusinesses();
+
+  const queryClient = useQueryClient();
+
+  const businesses: Business[] = [];
+  if (data) {
+    data.forEach((currentBusiness) => {
+      businesses.push({
+        _id: currentBusiness._id,
+        category: currentBusiness.category,
+        description: currentBusiness.description,
+        name: currentBusiness.name,
+        owner: currentBusiness.owner,
+        reviews: currentBusiness.reviews,
+        subscribers: currentBusiness.subscribers,
+      });
+    });
+  }
+
+  const deleteBusinessMutation = useMutation({
+    mutationFn: deleteBusiness,
+    onMutate: async (id: string) => {
+      await queryClient.cancelQueries({ queryKey: ["businesses"] });
+      const prevBusinesses = queryClient.getQueryData(["businesses"]);
+      queryClient.setQueryData(["businesses"], (businesses: Business[]) => {
+        return businesses.filter(
+          (currentBusiness) => currentBusiness._id !== id
+        );
+      });
+      return prevBusinesses;
+    },
+  });
 
   async function handleDelete(id: string) {
-    try {
-      const result = await axios.delete(
-        `http://localhost:3000/api/v1/businesses/${id}`
-      );
-      setBusinesses((prev) => prev.filter((busi) => busi.id !== id));
-    } catch (err) {
-      console.error(err);
-    }
+    await deleteBusinessMutation.mutateAsync(id);
   }
-  console.log(businesses);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.get(
-          "http://localhost:3000/api/v1/businesses"
-        );
-        if (result) {
-          setLoading(false);
+  if (isLoading) {
+    return "loading";
+  }
+  if (error) {
+    return error.message;
+  }
 
-          setBusinesses(result.data);
-        }
-      } catch (err) {
-        setLoading(false);
-        setError(err);
-      }
-    };
-    fetchData();
-  }, []);
+  if (!businesses) {
+    return "an error has accrued";
+  }
 
-  if (loading) return "loading";
-  if (error) return "error";
+  if (businesses.length === 0) {
+    return "there are no businesses yet";
+  }
 
   return (
     <>
-      {businesses.map((business) => {
+      {isFetching && <p>getting fresh data...</p>}
+
+      {businesses.map((currentBusiness) => {
         return (
-          <div key={business._id}>
-            <h1>{business.name}</h1>
-            <h3>{business.description}</h3>
-            <h5>{business.category}</h5>
-            <h6>{business.owener}</h6>
-            <Link to="/business/update/:id">
-              <button className="border border-black">update</button>
-            </Link>
-            <button
-              className="border border-black"
-              onClick={() => {
-                handleDelete(business._id);
-              }}
-            >
-              delete
-            </button>
-          </div>
+          <BusinessCard
+            key={currentBusiness._id}
+            business={currentBusiness}
+            handleDelete={handleDelete}
+          />
         );
       })}
     </>

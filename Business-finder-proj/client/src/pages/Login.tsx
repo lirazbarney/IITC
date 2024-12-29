@@ -1,6 +1,14 @@
 import axios from "axios";
 import validEmail from "../../utils/emailValidation.js";
+import { useContext } from "react";
+import { UserContext } from "../providers/user-context.js";
+import User from "../../types/userType.js";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+  const login = userContext.login;
+
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     const data = new FormData(ev.target as HTMLFormElement);
@@ -16,7 +24,17 @@ export default function Login() {
             password,
           }
         );
+        const { user } = result.data;
+
+        const newUser: User = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          plan: user.plan,
+        };
+        login(newUser);
         alert(`logged in! hello ${result.data.user.name}!`);
+        navigate("/");
       } catch (err) {
         if (axios.isAxiosError(err)) {
           switch (err.response?.status) {
