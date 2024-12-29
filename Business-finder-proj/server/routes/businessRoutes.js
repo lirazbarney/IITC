@@ -5,6 +5,14 @@ const {
   updateBusiness,
   deleteBusiness,
 } = require("../controllers/businessControllers.js");
+const {
+  addSubscription,
+  removeSubscription,
+} = require("../controllers/subscriptionsControllers.js");
+const {
+  addNewReview,
+  getBusinessReviews,
+} = require("../controllers/reviewsControllers.js");
 const router = express.Router();
 
 //! Business
@@ -20,28 +28,18 @@ router.put("/:id", updateBusiness); //✅
 // DELETE http://localhost:3000/api/v1/businesses/:id
 router.delete("/:id", deleteBusiness); //✅
 
-// TODO: handle subscriptions
 //! Subscriptions
 // POST http://localhost:3000/api/v1/businesses/:id/subscribe
-router.post("/:id/subscribe", (req, res) => {
-  res.send(`${req.method} ${req.baseUrl}${req.url}`);
-});
+router.post("/:id/subscribe", addSubscription); //✅
 
 // DELETE http://localhost:3000/api/v1/businesses/:id/unsubscribe
-router.delete("/:id/unsubscribe", (req, res) => {
-  res.send(`${req.method} ${req.baseUrl}${req.url}`);
-});
+router.delete("/:id/unsubscribe", removeSubscription); //✅
 
-// TODO: handle reviews
 //! Reviews
 // POST http://localhost:3000/api/v1/businesses/:id/review
-router.post("/:id/review", (req, res) => {
-  res.send(`${req.method} ${req.baseUrl}${req.url}`);
-});
+router.post("/:id/review", addNewReview); //✅
 
 // GET http://localhost:3000/api/v1/businesses/:id/reviews
-router.get("/:id/reviews", (req, res) => {
-  res.send(`${req.method} ${req.baseUrl}${req.url}`);
-});
+router.get("/:id/reviews", getBusinessReviews); //✅
 
 module.exports = router;

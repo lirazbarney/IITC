@@ -19,7 +19,6 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/signup" element={<Signup />} /> {/*✅*/}
       <Route path="/business" element={<Feed />} /> {/*✅*/}
       <Route path="/business/create" element={<CreateNewBusiness />} /> {/*✅*/}
-      <Route path="/business/:id" element={<BusinessDetails />} />
       <Route path="/business/update/:id" element={<UpdatingBusiness />} />
       {/* the last router */}
       <Route path="*" element={<NotFound />} />
